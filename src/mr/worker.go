@@ -41,12 +41,17 @@ func Worker(mapf func(string, string) []KeyValue,
 		task := getTask(workerID)
 		switch task.TaskType {
 		case MapTask:
+
+			//fmt.Printf("收到MapTask任务\n")
 			doMap(task, mapf, workerID)
 		case ReduceTask:
+			//fmt.Printf("收到ReduceTask任务\n")
 			doReduce(task, reducef, workerID)
 		case WaitTask:
+			//fmt.Printf("收到WaitTask任务\n")
 			time.Sleep(1 * time.Second)
 		case ExitTask:
+			//fmt.Printf("收到ExitTask任务\n")
 			return
 		}
 	}
@@ -54,6 +59,7 @@ func Worker(mapf func(string, string) []KeyValue,
 }
 
 func doMap(task GetTaskReply, mapf func(string, string) []KeyValue, workerID int) {
+	//fmt.Printf("执行map\n")
 	filename := task.FileName
 	file, err := os.Open(filename)
 	if err != nil {
@@ -90,6 +96,7 @@ func doMap(task GetTaskReply, mapf func(string, string) []KeyValue, workerID int
 }
 
 func doReduce(task GetTaskReply, reducef func(string, []string) string, workerID int) {
+	//fmt.Printf("执行reduce\n")
 	maptasknum := task.MapTaskNum
 	taskID := task.TaskID
 
@@ -134,29 +141,32 @@ func doReduce(task GetTaskReply, reducef func(string, []string) string, workerID
 		i = j
 	}
 	tempfile.Close()
-	os.Rename(tempfile.Name(), fmt.Sprintf("mr-out-%d", taskID))、
+	os.Rename(tempfile.Name(), fmt.Sprintf("mr-out-%d", taskID))
+	//fmt.Printf("汇报一次reduce完成\n")
 	reportTask(task.TaskType, workerID, task.TaskID)
 
 }
 
 func getTask(workerID int) GetTaskReply {
+	//fmt.Printf("执行getTask\n")
 	args := GetTaskArgs{
-		WokerID: workerID,
+		WorkerID: workerID,
 	}
 	reply := GetTaskReply{}
 
-	call("coordinator.GetTask", &args, &reply)
+	call("Coordinator.GetTask", &args, &reply)
 	return reply
 }
 
 func reportTask(tasktype string, workerID int, taskID int) {
+	//fmt.Printf("执行reportTask\n")
 	args := ReportTaskArgs{
 		TaskType: tasktype,
 		WorkerID: workerID,
 		TaskID:   taskID,
 	}
 	reply := ReportTaskReply{}
-	call("coordinator.ReportTask", &args, &reply)
+	call("Coordinator.ReportTask", &args, &reply)
 }
 
 // the RPC argument and reply types are defined in rpc.go.

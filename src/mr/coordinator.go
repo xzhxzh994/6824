@@ -1,7 +1,6 @@
 package mr
 
 import (
-	"errors"
 	"log"
 	"sync"
 	"time"
@@ -51,6 +50,7 @@ func (c *Coordinator) GetTask(args *GetTaskArgs, reply *GetTaskReply) error {
 		return nil
 	}
 	if !c.MapFinishied {
+		//fmt.Printf("这一次我们执行的是map阶段的函数\n")
 		for i, task := range c.MapTasks {
 			if task.Status == Idle {
 				reply.TaskType = MapTask
@@ -67,7 +67,16 @@ func (c *Coordinator) GetTask(args *GetTaskArgs, reply *GetTaskReply) error {
 		return nil
 	}
 	for i, task := range c.ReduceTasks { //不满足上面这个条件，那么必然就是处于reduce阶段
+		//switch task.Status {
+		//case Idle:
+		//	fmt.Printf("当前任务%d处于空闲状态\n", i)
+		//case Progressing:
+		//	fmt.Printf("当前任务%d处于执行状态\n", i)
+		//case Done:
+		//	fmt.Printf("当前任务%d处于完成状态\n", i)
+		//}
 		if task.Status == Idle {
+			//fmt.Printf("执行到了reduceTask内部")
 			reply.TaskType = ReduceTask
 			reply.TaskID = task.TaskID
 			reply.NReduce = c.NReduce
@@ -77,11 +86,10 @@ func (c *Coordinator) GetTask(args *GetTaskArgs, reply *GetTaskReply) error {
 			c.ReduceTasks[i].StartTime = time.Now()
 			return nil
 		}
-		reply.TaskType = WaitTask
-		return nil
+
 	}
-	log.Fatalf("GetTask error")
-	return errors.New("GetTask error")
+	reply.TaskType = WaitTask
+	return nil
 }
 
 func (c *Coordinator) checkTimeout() {
@@ -100,11 +108,17 @@ func (c *Coordinator) checkTimeout() {
 				completed = false
 			}
 		}
+		//if completed {
+		//	fmt.Printf("将mapFinishied设置为true\n")
+		//} else {
+		//	fmt.Printf("将mapFinishied设置为false\n")
+		//}
 		c.MapFinishied = completed
 		return
 	}
 	completed := true
 	for i, task := range c.ReduceTasks {
+		//fmt.Printf("检查reducetask%d\n", i)
 		if task.Status == Progressing && now.Sub(task.StartTime) > timeout {
 			c.ReduceTasks[i].Status = Idle
 		}
@@ -112,6 +126,11 @@ func (c *Coordinator) checkTimeout() {
 			completed = false
 		}
 	}
+	//if completed {
+	//	fmt.Printf("将AllFinishied设置为true\n")
+	//} else {
+	//	fmt.Printf("将AllFinishied设置为false\n")
+	//}
 	c.AllFinished = completed
 	return
 }
@@ -121,7 +140,9 @@ func (c *Coordinator) ReportTask(args *ReportTaskArgs, reply *ReportTaskReply) e
 	defer c.mu.Unlock()
 	if args.TaskType == MapTask {
 		for i, task := range c.MapTasks {
+
 			if task.Status == Progressing && task.TaskID == args.TaskID {
+
 				c.MapTasks[i].Status = Done
 				completed := true
 				for _, task := range c.MapTasks {
@@ -130,6 +151,11 @@ func (c *Coordinator) ReportTask(args *ReportTaskArgs, reply *ReportTaskReply) e
 						break
 					}
 				}
+				//if completed {
+				//	fmt.Printf("将mapFinishied设置为true\n")
+				//} else {
+				//	fmt.Printf("将mapFinishied设置为false\n")
+				//}
 				c.MapFinishied = completed
 				reply.Ok = true
 				return nil
@@ -137,7 +163,9 @@ func (c *Coordinator) ReportTask(args *ReportTaskArgs, reply *ReportTaskReply) e
 		}
 	} else if args.TaskType == ReduceTask {
 		for i, task := range c.ReduceTasks {
+			//fmt.Printf("检查reducetask%d\n", i)
 			if task.Status == Progressing && task.TaskID == args.TaskID {
+				//fmt.Printf("发生了一次将reduceTask设置为Done状态\n")
 				c.ReduceTasks[i].Status = Done
 				completed := true
 				for _, task := range c.ReduceTasks {
@@ -146,6 +174,11 @@ func (c *Coordinator) ReportTask(args *ReportTaskArgs, reply *ReportTaskReply) e
 						break
 					}
 				}
+				//if completed {
+				//	fmt.Printf("将AllFinishied设置为true\n")
+				//} else {
+				//	fmt.Printf("将AllFinishied设置为false\n")
+				//}
 				c.AllFinished = completed
 				reply.Ok = true
 				return nil
@@ -215,7 +248,7 @@ func MakeCoordinator(files []string, nReduce int) *Coordinator {
 		c.MapTasks[i] = Task{
 			FileName: filename,
 			TaskID:   i,
-			Status:   "Idle",
+			Status:   Idle,
 		}
 	}
 	for i := 0; i < c.NReduce; i++ {
