@@ -19,6 +19,7 @@ const (
 )
 
 func oneClient(t *testing.T, me int, ck kvtest.IKVClerk, done chan struct{}) kvtest.ClntRes {
+	fmt.Printf("Here is client %d\n", me)
 	lk := MakeLock(ck, "l")
 	ck.Put("l0", "", 0)
 	for i := 1; true; i++ {
