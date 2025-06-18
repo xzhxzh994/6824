@@ -1,0 +1,3590 @@
+============================== Test Run 1 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.0s #peers 3 #RPCs   582 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 4
+leader is 4
+leader is 4
+leader is 6
+leader is 1
+leader is 1
+leader is 1
+leader is 5
+leader is 5
+leader is 5
+  ... Passed --  time  9.0s #peers 7 #RPCs  3318 #Ops    0
+PASS
+ok  	6.5840/raft1	18.043s
+
+============================== Test Run 2 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  8.6s #peers 3 #RPCs   846 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 2
+leader is 2
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 4
+leader is 4
+  ... Passed --  time  6.9s #peers 7 #RPCs  2082 #Ops    0
+PASS
+ok  	6.5840/raft1	18.580s
+
+============================== Test Run 3 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.1s #peers 3 #RPCs   824 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 3
+leader is 3
+leader is 0
+leader is 0
+leader is 2
+leader is 2
+leader is 1
+leader is 1
+  ... Passed --  time  8.0s #peers 7 #RPCs  3240 #Ops    0
+PASS
+ok  	6.5840/raft1	19.239s
+
+============================== Test Run 4 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   262 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.5s #peers 3 #RPCs   874 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-4060727027.html
+--- FAIL: TestManyElections3A (5.81s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	17.377s
+
+============================== Test Run 5 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  8.6s #peers 3 #RPCs   862 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 6
+leader is 6
+leader is 4
+leader is 6
+leader is 1
+leader is 1
+leader is 6
+leader is 6
+leader is 6
+  ... Passed --  time 12.1s #peers 7 #RPCs  2502 #Ops    0
+PASS
+ok  	6.5840/raft1	23.785s
+
+============================== Test Run 6 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.6s #peers 3 #RPCs   686 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 5
+leader is 6
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time 10.1s #peers 7 #RPCs  3156 #Ops    0
+PASS
+ok  	6.5840/raft1	19.839s
+
+============================== Test Run 7 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.4s #peers 3 #RPCs   752 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 2
+leader is 2
+leader is 2
+leader is 4
+leader is 4
+leader is 2
+leader is 2
+leader is 2
+leader is 0
+leader is 0
+  ... Passed --  time  8.6s #peers 7 #RPCs  2886 #Ops    0
+PASS
+ok  	6.5840/raft1	19.079s
+
+============================== Test Run 8 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.5s #peers 3 #RPCs   678 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+  ... Passed --  time  7.0s #peers 7 #RPCs  1455 #Ops    0
+PASS
+ok  	6.5840/raft1	16.480s
+
+============================== Test Run 9 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.0s #peers 3 #RPCs   636 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+leader is 5
+leader is 5
+leader is 5
+  ... Passed --  time 10.0s #peers 7 #RPCs  2832 #Ops    0
+PASS
+ok  	6.5840/raft1	19.116s
+
+============================== Test Run 10 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   279 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.5s #peers 3 #RPCs   634 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 3
+leader is 6
+leader is 6
+leader is 3
+leader is 3
+leader is 0
+leader is 3
+leader is 1
+leader is 1
+  ... Passed --  time 14.4s #peers 7 #RPCs  3996 #Ops    0
+PASS
+ok  	6.5840/raft1	24.010s
+
+============================== Test Run 11 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   282 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.9s #peers 3 #RPCs   778 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 1
+leader is 1
+leader is 6
+leader is 6
+  ... Passed --  time  7.4s #peers 7 #RPCs  2334 #Ops    0
+PASS
+ok  	6.5840/raft1	18.400s
+
+============================== Test Run 12 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.0s #peers 3 #RPCs   714 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 0
+leader is 0
+leader is 1
+leader is 1
+leader is 1
+leader is 3
+leader is 0
+leader is 5
+  ... Passed --  time  9.5s #peers 7 #RPCs  2850 #Ops    0
+PASS
+ok  	6.5840/raft1	19.534s
+
+============================== Test Run 13 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  5.6s #peers 3 #RPCs   602 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 4
+leader is 1
+leader is 1
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+leader is 3
+  ... Passed --  time  8.2s #peers 7 #RPCs  2982 #Ops    0
+PASS
+ok  	6.5840/raft1	16.828s
+
+============================== Test Run 14 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.6s #peers 3 #RPCs   856 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 3
+leader is 6
+leader is 6
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 2
+leader is 2
+leader is 2
+  ... Passed --  time  7.9s #peers 7 #RPCs  2988 #Ops    0
+PASS
+ok  	6.5840/raft1	19.555s
+
+============================== Test Run 15 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.9s #peers 3 #RPCs   692 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 4
+leader is 2
+leader is 5
+leader is 5
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-1769309695.html
+--- FAIL: TestManyElections3A (7.56s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	17.478s
+
+============================== Test Run 16 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.0s #peers 3 #RPCs   640 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 0
+leader is 2
+leader is 2
+leader is 0
+leader is 6
+leader is 2
+leader is 2
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time 14.3s #peers 7 #RPCs  4104 #Ops    0
+PASS
+ok  	6.5840/raft1	23.390s
+
+============================== Test Run 17 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.6s #peers 3 #RPCs   558 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 2
+leader is 2
+leader is 5
+leader is 2
+leader is 1
+leader is 1
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+  ... Passed --  time  8.9s #peers 7 #RPCs  2796 #Ops    0
+PASS
+ok  	6.5840/raft1	17.598s
+
+============================== Test Run 18 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.0s #peers 3 #RPCs   532 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 0
+leader is 3
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 1
+leader is 1
+  ... Passed --  time 10.5s #peers 7 #RPCs  2472 #Ops    0
+PASS
+ok  	6.5840/raft1	18.561s
+
+============================== Test Run 19 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.0s #peers 3 #RPCs   604 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 1
+leader is 6
+leader is 5
+leader is 0
+leader is 0
+leader is 0
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  7.2s #peers 7 #RPCs  2826 #Ops    0
+PASS
+ok  	6.5840/raft1	16.208s
+
+============================== Test Run 20 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.5s #peers 3 #RPCs   732 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 3
+leader is 6
+leader is 2
+leader is 2
+leader is 2
+leader is 4
+leader is 4
+  ... Passed --  time  9.4s #peers 7 #RPCs  2916 #Ops    0
+PASS
+ok  	6.5840/raft1	19.941s
+
+============================== Test Run 21 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  8.2s #peers 3 #RPCs   800 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 0
+leader is 0
+leader is 0
+  ... Passed --  time  6.9s #peers 7 #RPCs  1932 #Ops    0
+PASS
+ok  	6.5840/raft1	18.134s
+
+============================== Test Run 22 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  7.9s #peers 3 #RPCs   786 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 0
+leader is 4
+leader is 4
+leader is 4
+leader is 5
+leader is 5
+leader is 5
+leader is 0
+leader is 0
+  ... Passed --  time 12.2s #peers 7 #RPCs  2142 #Ops    0
+PASS
+ok  	6.5840/raft1	23.188s
+
+============================== Test Run 23 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.0s #peers 3 #RPCs   522 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 4
+leader is 0
+leader is 3
+leader is 0
+leader is 0
+leader is 6
+leader is 6
+  ... Passed --  time  9.1s #peers 7 #RPCs  3198 #Ops    0
+PASS
+ok  	6.5840/raft1	17.114s
+
+============================== Test Run 24 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.1s #peers 3 #RPCs   712 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 5
+leader is 6
+leader is 3
+leader is 5
+leader is 6
+leader is 6
+  ... Passed --  time 11.9s #peers 7 #RPCs  3300 #Ops    0
+PASS
+ok  	6.5840/raft1	21.998s
+
+============================== Test Run 25 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.7s #peers 3 #RPCs   784 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 3
+leader is 1
+leader is 1
+leader is 2
+leader is 3
+leader is 5
+leader is 4
+leader is 3
+leader is 3
+leader is 3
+  ... Passed --  time 10.0s #peers 7 #RPCs  3450 #Ops    0
+PASS
+ok  	6.5840/raft1	20.785s
+
+============================== Test Run 26 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   262 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  4.8s #peers 3 #RPCs   476 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 3
+leader is 5
+leader is 5
+leader is 2
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 5
+  ... Passed --  time  9.3s #peers 7 #RPCs  2940 #Ops    0
+PASS
+ok  	6.5840/raft1	17.123s
+
+============================== Test Run 27 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.9s #peers 3 #RPCs   588 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 0
+leader is 0
+leader is 1
+leader is 1
+  ... Passed --  time  9.4s #peers 7 #RPCs  1566 #Ops    0
+PASS
+ok  	6.5840/raft1	18.366s
+
+============================== Test Run 28 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.1s #peers 3 #RPCs   614 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 5
+  ... Passed --  time  8.4s #peers 7 #RPCs  3048 #Ops    0
+PASS
+ok  	6.5840/raft1	17.657s
+
+============================== Test Run 29 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   260 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.6s #peers 3 #RPCs   556 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 2
+leader is 2
+leader is 5
+leader is 5
+leader is 0
+leader is 3
+leader is 3
+leader is 5
+leader is 5
+  ... Passed --  time 10.3s #peers 7 #RPCs  3438 #Ops    0
+PASS
+ok  	6.5840/raft1	18.945s
+
+============================== Test Run 30 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.0s #peers 3 #RPCs   622 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 4
+leader is 4
+leader is 1
+leader is 3
+leader is 3
+leader is 5
+leader is 6
+leader is 6
+leader is 6
+  ... Passed --  time  9.1s #peers 7 #RPCs  4392 #Ops    0
+PASS
+ok  	6.5840/raft1	18.096s
+
+============================== Test Run 31 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   254 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.9s #peers 3 #RPCs   584 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 1
+leader is 2
+leader is 2
+leader is 4
+leader is 4
+leader is 1
+leader is 1
+leader is 6
+leader is 6
+  ... Passed --  time  8.5s #peers 7 #RPCs  4008 #Ops    0
+PASS
+ok  	6.5840/raft1	17.448s
+
+============================== Test Run 32 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.6s #peers 3 #RPCs   876 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 3
+leader is 3
+leader is 5
+leader is 5
+leader is 3
+leader is 0
+leader is 2
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  9.4s #peers 7 #RPCs  3486 #Ops    0
+PASS
+ok  	6.5840/raft1	21.069s
+
+============================== Test Run 33 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  5.0s #peers 3 #RPCs   518 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 4
+leader is 6
+leader is 2
+leader is 2
+leader is 2
+leader is 6
+leader is 6
+leader is 4
+leader is 4
+  ... Passed --  time 10.7s #peers 7 #RPCs  3012 #Ops    0
+PASS
+ok  	6.5840/raft1	18.812s
+
+============================== Test Run 34 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.0s #peers 3 #RPCs   812 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 6
+leader is 6
+leader is 2
+leader is 4
+leader is 4
+  ... Passed --  time  9.1s #peers 7 #RPCs  2304 #Ops    0
+PASS
+ok  	6.5840/raft1	20.159s
+
+============================== Test Run 35 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.1s #peers 3 #RPCs   748 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 4
+leader is 0
+leader is 3
+leader is 0
+leader is 3
+leader is 3
+  ... Passed --  time 12.5s #peers 7 #RPCs  2742 #Ops    0
+PASS
+ok  	6.5840/raft1	22.578s
+
+============================== Test Run 36 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.0s #peers 3 #RPCs   532 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  9.6s #peers 7 #RPCs  1530 #Ops    0
+PASS
+ok  	6.5840/raft1	17.619s
+
+============================== Test Run 37 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.5s #peers 3 #RPCs   750 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 2
+leader is 2
+leader is 5
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 3
+leader is 3
+  ... Passed --  time  8.0s #peers 7 #RPCs  2694 #Ops    0
+PASS
+ok  	6.5840/raft1	18.588s
+
+============================== Test Run 38 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  8.1s #peers 3 #RPCs   788 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 2
+leader is 2
+leader is 2
+leader is 3
+leader is 3
+  ... Passed --  time 10.2s #peers 7 #RPCs  2586 #Ops    0
+PASS
+ok  	6.5840/raft1	21.338s
+
+============================== Test Run 39 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.5s #peers 3 #RPCs   562 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 5
+leader is 5
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 1
+leader is 1
+leader is 1
+leader is 2
+  ... Passed --  time 13.6s #peers 7 #RPCs  4170 #Ops    0
+PASS
+ok  	6.5840/raft1	22.123s
+
+============================== Test Run 40 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  8.5s #peers 3 #RPCs   844 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 2
+leader is 5
+leader is 6
+leader is 6
+leader is 6
+  ... Passed --  time 10.5s #peers 7 #RPCs  3720 #Ops    0
+PASS
+ok  	6.5840/raft1	22.008s
+
+============================== Test Run 41 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.2s #peers 3 #RPCs   636 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 3
+leader is 3
+leader is 0
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 6
+leader is 1
+  ... Passed --  time  8.2s #peers 7 #RPCs  2700 #Ops    0
+PASS
+ok  	6.5840/raft1	17.499s
+
+============================== Test Run 42 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  8.6s #peers 3 #RPCs   848 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 1
+leader is 1
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-557655077.html
+--- FAIL: TestManyElections3A (6.45s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	18.116s
+
+============================== Test Run 43 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.5s #peers 3 #RPCs   896 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 4
+leader is 5
+leader is 4
+leader is 4
+leader is 5
+leader is 5
+leader is 2
+leader is 0
+leader is 0
+leader is 0
+  ... Passed --  time  9.2s #peers 7 #RPCs  3306 #Ops    0
+PASS
+ok  	6.5840/raft1	20.690s
+
+============================== Test Run 44 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.4s #peers 3 #RPCs   662 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 2
+leader is 2
+leader is 4
+leader is 1
+leader is 2
+leader is 2
+leader is 4
+leader is 6
+leader is 3
+leader is 3
+  ... Passed --  time  9.1s #peers 7 #RPCs  4572 #Ops    0
+PASS
+ok  	6.5840/raft1	18.511s
+
+============================== Test Run 45 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   280 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  4.4s #peers 3 #RPCs   444 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 1
+leader is 4
+leader is 2
+leader is 2
+leader is 6
+leader is 2
+leader is 2
+leader is 0
+  ... Passed --  time 14.9s #peers 7 #RPCs  5232 #Ops    0
+PASS
+ok  	6.5840/raft1	22.440s
+
+============================== Test Run 46 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   280 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  5.5s #peers 3 #RPCs   572 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 4
+leader is 4
+leader is 0
+leader is 0
+leader is 0
+leader is 5
+leader is 5
+leader is 5
+leader is 4
+  ... Passed --  time 13.4s #peers 7 #RPCs  2946 #Ops    0
+PASS
+ok  	6.5840/raft1	21.993s
+
+============================== Test Run 47 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  8.9s #peers 3 #RPCs   912 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 5
+leader is 5
+leader is 0
+leader is 0
+  ... Passed --  time  6.0s #peers 7 #RPCs  1752 #Ops    0
+PASS
+ok  	6.5840/raft1	17.977s
+
+============================== Test Run 48 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  4.5s #peers 3 #RPCs   496 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 5
+leader is 5
+leader is 0
+leader is 4
+leader is 0
+leader is 1
+leader is 1
+leader is 3
+leader is 3
+  ... Passed --  time  8.4s #peers 7 #RPCs  3024 #Ops    0
+PASS
+ok  	6.5840/raft1	16.058s
+
+============================== Test Run 49 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-2289630134.html
+--- FAIL: TestReElection3A (8.50s)
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 0
+leader is 2
+leader is 2
+leader is 2
+leader is 6
+leader is 6
+  ... Passed --  time  8.9s #peers 7 #RPCs  1632 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	20.457s
+
+============================== Test Run 50 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.9s #peers 3 #RPCs   774 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 5
+leader is 5
+leader is 5
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+  ... Passed --  time  8.0s #peers 7 #RPCs  2736 #Ops    0
+PASS
+ok  	6.5840/raft1	18.966s
+
+============================== Test Run 51 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-3006774492.html
+--- FAIL: TestReElection3A (8.46s)
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  9.9s #peers 7 #RPCs  1668 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	21.447s
+
+============================== Test Run 52 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.0s #peers 3 #RPCs   502 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 6
+leader is 6
+leader is 2
+leader is 2
+leader is 2
+  ... Passed --  time 10.9s #peers 7 #RPCs  1398 #Ops    0
+PASS
+ok  	6.5840/raft1	18.980s
+
+============================== Test Run 53 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.5s #peers 3 #RPCs   654 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 5
+leader is 5
+leader is 1
+leader is 3
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+  ... Passed --  time  7.5s #peers 7 #RPCs  3864 #Ops    0
+PASS
+ok  	6.5840/raft1	17.002s
+
+============================== Test Run 54 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.5s #peers 3 #RPCs   582 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 5
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 6
+leader is 6
+leader is 1
+leader is 1
+  ... Passed --  time  8.5s #peers 7 #RPCs  3132 #Ops    0
+PASS
+ok  	6.5840/raft1	17.102s
+
+============================== Test Run 55 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  7.5s #peers 3 #RPCs   778 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 6
+leader is 5
+leader is 3
+leader is 3
+leader is 3
+leader is 4
+leader is 4
+  ... Passed --  time 14.1s #peers 7 #RPCs  4548 #Ops    0
+PASS
+ok  	6.5840/raft1	24.711s
+
+============================== Test Run 56 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.5s #peers 3 #RPCs   726 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 0
+leader is 0
+leader is 0
+leader is 6
+leader is 6
+  ... Passed --  time  6.9s #peers 7 #RPCs  3030 #Ops    0
+PASS
+ok  	6.5840/raft1	17.445s
+
+============================== Test Run 57 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.5s #peers 3 #RPCs   762 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 1
+leader is 1
+  ... Passed --  time 14.1s #peers 7 #RPCs  3084 #Ops    0
+PASS
+ok  	6.5840/raft1	24.662s
+
+============================== Test Run 58 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.8s #peers 3 #RPCs   798 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 1
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 6
+leader is 1
+leader is 2
+  ... Passed --  time 12.6s #peers 7 #RPCs  3894 #Ops    0
+PASS
+ok  	6.5840/raft1	23.426s
+
+============================== Test Run 59 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.0s #peers 3 #RPCs   494 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  7.0s #peers 7 #RPCs  1902 #Ops    0
+PASS
+ok  	6.5840/raft1	14.934s
+
+============================== Test Run 60 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   262 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  9.0s #peers 3 #RPCs   913 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 1
+leader is 2
+leader is 2
+leader is 2
+leader is 5
+leader is 0
+leader is 6
+leader is 2
+leader is 2
+  ... Passed --  time 14.0s #peers 7 #RPCs  5484 #Ops    0
+PASS
+ok  	6.5840/raft1	25.963s
+
+============================== Test Run 61 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.4s #peers 3 #RPCs   854 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 3
+leader is 2
+leader is 2
+leader is 2
+leader is 5
+leader is 5
+leader is 5
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-1711609434.html
+--- FAIL: TestManyElections3A (13.40s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	24.917s
+
+============================== Test Run 62 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  7.1s #peers 3 #RPCs   720 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 3
+leader is 6
+leader is 6
+leader is 0
+leader is 3
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 1
+  ... Passed --  time  9.3s #peers 7 #RPCs  2862 #Ops    0
+PASS
+ok  	6.5840/raft1	19.425s
+
+============================== Test Run 63 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.1s #peers 3 #RPCs   694 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 4
+leader is 6
+leader is 5
+leader is 5
+leader is 5
+leader is 0
+leader is 0
+leader is 0
+leader is 5
+leader is 5
+leader is 5
+  ... Passed --  time  5.5s #peers 7 #RPCs  2142 #Ops    0
+PASS
+ok  	6.5840/raft1	15.600s
+
+============================== Test Run 64 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  8.6s #peers 3 #RPCs   840 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 4
+leader is 4
+leader is 4
+leader is 5
+leader is 3
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+  ... Passed --  time  9.1s #peers 7 #RPCs  4482 #Ops    0
+PASS
+ok  	6.5840/raft1	20.678s
+
+============================== Test Run 65 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  4.9s #peers 3 #RPCs   500 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 3
+leader is 3
+leader is 4
+leader is 4
+leader is 4
+leader is 3
+leader is 5
+leader is 5
+leader is 2
+leader is 2
+  ... Passed --  time 10.9s #peers 7 #RPCs  5478 #Ops    0
+PASS
+ok  	6.5840/raft1	19.009s
+
+============================== Test Run 66 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.6s #peers 3 #RPCs   552 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-1722637634.html
+--- FAIL: TestManyElections3A (7.60s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	16.182s
+
+============================== Test Run 67 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.5s #peers 3 #RPCs   634 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 0
+leader is 0
+leader is 3
+leader is 3
+leader is 0
+leader is 0
+leader is 0
+leader is 3
+leader is 4
+leader is 4
+  ... Passed --  time  9.8s #peers 7 #RPCs  3090 #Ops    0
+PASS
+ok  	6.5840/raft1	19.417s
+
+============================== Test Run 68 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.6s #peers 3 #RPCs   671 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 0
+leader is 0
+leader is 6
+leader is 5
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+  ... Passed --  time 13.6s #peers 7 #RPCs  4254 #Ops    0
+PASS
+ok  	6.5840/raft1	23.219s
+
+============================== Test Run 69 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.6s #peers 3 #RPCs   690 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+leader is 0
+  ... Passed --  time  9.5s #peers 7 #RPCs  2784 #Ops    0
+PASS
+ok  	6.5840/raft1	19.201s
+
+============================== Test Run 70 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   280 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.0s #peers 3 #RPCs   628 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 0
+leader is 1
+leader is 0
+leader is 3
+leader is 3
+leader is 0
+leader is 0
+  ... Passed --  time 10.7s #peers 7 #RPCs  3012 #Ops    0
+PASS
+ok  	6.5840/raft1	19.793s
+
+============================== Test Run 71 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.5s #peers 3 #RPCs   768 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 3
+leader is 6
+leader is 2
+leader is 2
+leader is 6
+leader is 6
+leader is 6
+leader is 2
+leader is 2
+leader is 2
+  ... Passed --  time  7.4s #peers 7 #RPCs  3210 #Ops    0
+PASS
+ok  	6.5840/raft1	17.864s
+
+============================== Test Run 72 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   269 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.5s #peers 3 #RPCs   672 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 0
+leader is 0
+leader is 5
+leader is 5
+leader is 2
+leader is 2
+leader is 2
+leader is 5
+leader is 5
+leader is 0
+  ... Passed --  time  6.0s #peers 7 #RPCs  2358 #Ops    0
+PASS
+ok  	6.5840/raft1	15.633s
+
+============================== Test Run 73 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   286 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.5s #peers 3 #RPCs   540 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 4
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 3
+leader is 3
+leader is 3
+  ... Passed --  time  8.9s #peers 7 #RPCs  3246 #Ops    0
+PASS
+ok  	6.5840/raft1	17.490s
+
+============================== Test Run 74 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  8.1s #peers 3 #RPCs   798 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 3
+leader is 3
+  ... Passed --  time  9.5s #peers 7 #RPCs  1704 #Ops    0
+PASS
+ok  	6.5840/raft1	20.710s
+
+============================== Test Run 75 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.6s #peers 3 #RPCs   792 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 2
+leader is 5
+leader is 5
+leader is 5
+leader is 0
+leader is 6
+leader is 6
+leader is 0
+leader is 0
+  ... Passed --  time 10.3s #peers 7 #RPCs  3222 #Ops    0
+PASS
+ok  	6.5840/raft1	20.945s
+
+============================== Test Run 76 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  7.6s #peers 3 #RPCs   770 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 6
+leader is 6
+leader is 5
+leader is 5
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 4
+leader is 4
+  ... Passed --  time  9.0s #peers 7 #RPCs  2784 #Ops    0
+PASS
+ok  	6.5840/raft1	19.712s
+
+============================== Test Run 77 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  7.6s #peers 3 #RPCs   756 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 4
+leader is 2
+leader is 2
+leader is 2
+leader is 5
+leader is 5
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time 11.0s #peers 7 #RPCs  1602 #Ops    0
+PASS
+ok  	6.5840/raft1	21.632s
+
+============================== Test Run 78 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  9.2s #peers 3 #RPCs   924 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 6
+leader is 6
+leader is 3
+leader is 2
+leader is 2
+leader is 2
+  ... Passed --  time 13.5s #peers 7 #RPCs  3630 #Ops    0
+PASS
+ok  	6.5840/raft1	25.713s
+
+============================== Test Run 79 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  4.6s #peers 3 #RPCs   502 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 2
+leader is 5
+leader is 5
+leader is 1
+leader is 1
+leader is 2
+leader is 2
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-1492860753.html
+--- FAIL: TestManyElections3A (14.02s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	21.672s
+
+============================== Test Run 80 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.5s #peers 3 #RPCs   642 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 5
+leader is 0
+leader is 0
+leader is 0
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  6.1s #peers 7 #RPCs  2136 #Ops    0
+PASS
+ok  	6.5840/raft1	15.625s
+
+============================== Test Run 81 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.5s #peers 3 #RPCs   546 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 0
+leader is 0
+leader is 0
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+  ... Passed --  time  7.0s #peers 7 #RPCs  2196 #Ops    0
+PASS
+ok  	6.5840/raft1	15.533s
+
+============================== Test Run 82 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.5s #peers 3 #RPCs   584 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 0
+leader is 0
+leader is 1
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-81520039.html
+--- FAIL: TestManyElections3A (6.95s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	15.487s
+
+============================== Test Run 83 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.4s #peers 3 #RPCs   582 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 3
+leader is 5
+leader is 5
+leader is 5
+leader is 6
+  ... Passed --  time  9.7s #peers 7 #RPCs  1848 #Ops    0
+PASS
+ok  	6.5840/raft1	18.188s
+
+============================== Test Run 84 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.9s #peers 3 #RPCs   684 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 0
+leader is 0
+leader is 5
+leader is 4
+leader is 4
+leader is 4
+leader is 2
+leader is 0
+leader is 0
+leader is 1
+  ... Passed --  time  8.4s #peers 7 #RPCs  3102 #Ops    0
+PASS
+ok  	6.5840/raft1	18.359s
+
+============================== Test Run 85 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   260 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  9.2s #peers 3 #RPCs   902 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 3
+leader is 3
+leader is 3
+leader is 5
+leader is 1
+leader is 1
+leader is 2
+leader is 2
+leader is 2
+  ... Passed --  time  8.9s #peers 7 #RPCs  3828 #Ops    0
+PASS
+ok  	6.5840/raft1	21.165s
+
+============================== Test Run 86 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  8.4s #peers 3 #RPCs   858 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 1
+leader is 1
+leader is 3
+leader is 3
+leader is 1
+leader is 1
+leader is 1
+leader is 2
+leader is 6
+leader is 6
+  ... Passed --  time 10.8s #peers 7 #RPCs  4110 #Ops    0
+PASS
+ok  	6.5840/raft1	22.244s
+
+============================== Test Run 87 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   286 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.0s #peers 3 #RPCs   576 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 4
+leader is 4
+leader is 2
+leader is 2
+leader is 4
+leader is 2
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+  ... Passed --  time  9.6s #peers 7 #RPCs  3474 #Ops    0
+PASS
+ok  	6.5840/raft1	18.760s
+
+============================== Test Run 88 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.8s #peers 3 #RPCs   664 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 5
+leader is 5
+leader is 5
+leader is 3
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 0
+  ... Passed --  time 12.0s #peers 7 #RPCs  4800 #Ops    0
+PASS
+ok  	6.5840/raft1	21.860s
+
+============================== Test Run 89 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.5s #peers 3 #RPCs   586 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 2
+leader is 2
+  ... Passed --  time  8.6s #peers 7 #RPCs  1350 #Ops    0
+PASS
+ok  	6.5840/raft1	17.202s
+
+============================== Test Run 90 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   268 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-1948193013.html
+--- FAIL: TestReElection3A (8.54s)
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 0
+leader is 0
+leader is 4
+leader is 4
+leader is 5
+leader is 5
+leader is 5
+leader is 4
+leader is 4
+leader is 4
+  ... Passed --  time  7.1s #peers 7 #RPCs  2826 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	18.679s
+
+============================== Test Run 91 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.9s #peers 3 #RPCs   694 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 2
+leader is 2
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 2
+leader is 2
+leader is 2
+  ... Passed --  time 12.8s #peers 7 #RPCs  3198 #Ops    0
+PASS
+ok  	6.5840/raft1	22.749s
+
+============================== Test Run 92 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  7.0s #peers 3 #RPCs   692 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 5
+  ... Passed --  time  7.4s #peers 7 #RPCs  1446 #Ops    0
+PASS
+ok  	6.5840/raft1	17.465s
+
+============================== Test Run 93 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  5.1s #peers 3 #RPCs   522 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 1
+leader is 6
+leader is 6
+leader is 1
+leader is 2
+leader is 2
+leader is 1
+leader is 2
+leader is 6
+leader is 1
+leader is 1
+  ... Passed --  time  8.4s #peers 7 #RPCs  2934 #Ops    0
+PASS
+ok  	6.5840/raft1	16.504s
+
+============================== Test Run 94 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  6.0s #peers 3 #RPCs   622 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 2
+leader is 3
+leader is 4
+leader is 4
+leader is 3
+leader is 4
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 0
+  ... Passed --  time 11.1s #peers 7 #RPCs  3630 #Ops    0
+PASS
+ok  	6.5840/raft1	20.225s
+
+============================== Test Run 95 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   264 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  8.0s #peers 3 #RPCs   798 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 2
+leader is 2
+leader is 2
+leader is 2
+leader is 4
+leader is 5
+leader is 1
+leader is 1
+leader is 0
+leader is 0
+  ... Passed --  time 10.3s #peers 7 #RPCs  3312 #Ops    0
+PASS
+ok  	6.5840/raft1	21.268s
+
+============================== Test Run 96 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  9.2s #peers 3 #RPCs   930 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-1599870426.html
+--- FAIL: TestManyElections3A (7.25s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	19.424s
+
+============================== Test Run 97 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   260 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  5.6s #peers 3 #RPCs   558 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 4
+leader is 4
+leader is 6
+leader is 0
+leader is 0
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  7.4s #peers 7 #RPCs  2868 #Ops    0
+PASS
+ok  	6.5840/raft1	16.022s
+
+============================== Test Run 98 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   272 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  7.6s #peers 3 #RPCs   738 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 2
+leader is 6
+leader is 5
+leader is 5
+leader is 3
+leader is 3
+leader is 3
+leader is 4
+leader is 5
+leader is 5
+  ... Passed --  time  7.0s #peers 7 #RPCs  2694 #Ops    0
+PASS
+ok  	6.5840/raft1	17.706s
+
+============================== Test Run 99 ==============================
+Test (3A): initial election (reliable network)...
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   274 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 2
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  9.1s #peers 3 #RPCs   878 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 3
+leader is 1
+leader is 4
+leader is 1
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 4
+leader is 4
+leader is 4
+  ... Passed --  time  8.0s #peers 7 #RPCs  2604 #Ops    0
+PASS
+ok  	6.5840/raft1	20.160s
+
+============================== Test Run 100 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   266 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 2
+leader is 2
+  ... Passed --  time  6.1s #peers 3 #RPCs   626 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 0
+leader is 0
+leader is 3
+leader is 3
+leader is 4
+leader is 6
+leader is 3
+leader is 3
+leader is 3
+leader is 0
+leader is 0
+  ... Passed --  time  9.6s #peers 7 #RPCs  4188 #Ops    0
+PASS
+ok  	6.5840/raft1	18.784s
+
+============================== Test Run 101 ==============================
+Test (3A): initial election (reliable network)...
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   257 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 0
+leader is 0
+  ... Passed --  time  5.4s #peers 3 #RPCs   556 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 6
+leader is 0
+leader is 6
+leader is 6
+leader is 2
+leader is 5
+leader is 2
+leader is 1
+leader is 1
+leader is 1
+leader is 1
+  ... Passed --  time  7.5s #peers 7 #RPCs  2376 #Ops    0
+PASS
+ok  	6.5840/raft1	15.957s
+
+============================== Test Run 102 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   262 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 0
+让leader断连
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+leader is 1
+leader is 1
+  ... Passed --  time  6.6s #peers 3 #RPCs   656 #Ops    0
+Test (3A): multiple elections (reliable network)...
+leader is 5
+leader is 5
+leader is 5
+leader is 6
+leader is 6
+leader is 6
+leader is 5
+leader is 5
+leader is 5
+leader is 5
+leader is 3
+  ... Passed --  time  9.4s #peers 7 #RPCs  2934 #Ops    0
+PASS
+ok  	6.5840/raft1	18.949s
+
+============================== Test Run 103 ==============================
+Test (3A): initial election (reliable network)...
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+leader is 1
+让leader断连
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+leader is 0
+所有节点断连
+info: wrote visualization to /tmp/porcupine-3031945243.html
+exit status 1
+FAIL	6.5840/raft1	4.678s
+
+============================== Test Run 104 ==============================

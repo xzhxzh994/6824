@@ -7,6 +7,7 @@ package raft
 // Make() creates a new raft peer that implements the raft interface.
 
 import (
+	"fmt"
 	//	"bytes"
 	"math/rand"
 	"sync"
@@ -19,19 +20,36 @@ import (
 	"6.5840/tester1"
 )
 
-
 // A Go object implementing a single Raft peer.
+
 type Raft struct {
-	mu        sync.Mutex          // Lock to protect shared access to this peer's state
+	//工具类以及MIT6824专门需要的
+	mu sync.Mutex // Lock to protect shared access to this peer's state
+	//cond      *sync.Cond
 	peers     []*labrpc.ClientEnd // RPC end points of all peers
 	persister *tester.Persister   // Object to hold this peer's persisted state
 	me        int                 // this peer's index into peers[]
 	dead      int32               // set by Kill()
+	applyCh   chan raftapi.ApplyMsg
+	//所有server维护的需要持久化存储的：
+	currentTerm int
+	voteFor     int
+	log         []LogEntry
+	//所有server维护的volatile的
+	commitIndex int
+	lastApplied int
 
-	// Your data here (3A, 3B, 3C).
-	// Look at the paper's Figure 2 for a description of what
-	// state a Raft server must maintain.
+	//Leader使用到的
+	leaderTool LeaderTool
 
+	//其他没有提到但是需要的
+	state         string
+	leaderID      int       //这个暂时无视掉，第四章可能需要
+	lastHeartBeat time.Time //保存上次的心跳时间
+	heartBeat     time.Duration
+
+	//更换配置需要用到的
+	minimumElectionTimeout time.Duration
 }
 
 // return currentTerm and whether this server
@@ -41,6 +59,11 @@ func (rf *Raft) GetState() (int, bool) {
 	var term int
 	var isleader bool
 	// Your code here (3A).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	term = rf.currentTerm
+	isleader = rf.state == Leader
+
 	return term, isleader
 }
 
@@ -61,7 +84,6 @@ func (rf *Raft) persist() {
 	// raftstate := w.Bytes()
 	// rf.persister.Save(raftstate, nil)
 }
-
 
 // restore previously persisted state.
 func (rf *Raft) readPersist(data []byte) {
@@ -90,7 +112,6 @@ func (rf *Raft) PersistBytes() int {
 	return rf.persister.RaftStateSize()
 }
 
-
 // the service says it has created a snapshot that has
 // all info up to and including index. this means the
 // service no longer needs the log through (and including)
@@ -100,22 +121,89 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 
 }
 
-
 // example RequestVote RPC arguments structure.
 // field names must start with capital letters!
-type RequestVoteArgs struct {
-	// Your data here (3A, 3B).
-}
-
-// example RequestVote RPC reply structure.
-// field names must start with capital letters!
-type RequestVoteReply struct {
-	// Your data here (3A).
-}
 
 // example RequestVote RPC handler.
+
+func (rf *Raft) setNewTermBybiggerTerm(term int) {
+	rf.currentTerm = term
+	rf.voteFor = -1
+	rf.state = Follower
+}
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (3A, 3B).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+
+	//term := rf.currentTerm
+	if args.Term < rf.currentTerm {
+		reply.Term = rf.currentTerm
+		reply.VoteGranted = false
+		//.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:term太低\n", rf.currentTerm, rf.me, args.CandidateID)
+		return
+	}
+	if args.Term > rf.currentTerm {
+		rf.setNewTermBybiggerTerm(args.Term)
+	}
+	//还有一点：我们需要重置心跳时间
+
+	//需要满足1.当前没有投票给其他人或者当前投票的人就是对方，2.日志条目对的上
+	qualified := true //检查日志对不对的上，3A先不做
+	//
+	if (rf.voteFor == -1 || rf.voteFor == args.CandidateID) && qualified {
+		reply.VoteGranted = true
+		reply.Term = rf.currentTerm
+		//fmt.Printf("serverID:%d---接收到来自server:%d的RequestVote，同意\n", rf.me, args.CandidateID)
+		//设置心跳
+		rf.lastHeartBeat = time.Now()
+		rf.voteFor = args.CandidateID //设置candidateID
+	} else {
+		reply.VoteGranted = false
+		reply.Term = rf.currentTerm
+		//fmt.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:已经投票给别人\n", rf.currentTerm, rf.me, args.CandidateID)
+	}
+	return
+}
+
+func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply) {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	//fmt.Printf("serverID:%d---接收到来自serverID%d的心跳\n", rf.me, args.LeaderID)
+	//reply.Term = rf.currentTerm
+	//reply.Success = false
+	if args.Term < rf.currentTerm {
+		reply.Term = rf.currentTerm
+		reply.Success = false
+		return
+	}
+	//到这里我们基本上保证了Leader没问题
+	if args.Term >= rf.currentTerm {
+		rf.setNewTermBybiggerTerm(args.Term)
+		//并且我们需要更新
+	}
+	//一致性检查
+
+	//checkResult := true
+	//if checkResult == false {
+	//	reply.Term = rf.currentTerm
+	//	reply.Success = false
+	//	return
+	//}
+
+	//之后就是通过了一致性检查的
+	if len(args.Entries) != 0 {
+		//同步条目
+	}
+
+	//更新commitIndex
+	//if rf.commitIndex > args.LeaderCommit {
+	//	rf.commitIndex = min(args.LeaderCommit,最新的日志的Index)
+	//}
+	rf.lastHeartBeat = time.Now()
+	reply.Success = true
+	reply.Term = rf.currentTerm
+	return
 }
 
 // example code to send a RequestVote RPC to a server.
@@ -147,9 +235,27 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 // the struct itself.
 func (rf *Raft) sendRequestVote(server int, args *RequestVoteArgs, reply *RequestVoteReply) bool {
 	ok := rf.peers[server].Call("Raft.RequestVote", args, reply)
+	if ok {
+		rf.mu.Lock()
+		defer rf.mu.Unlock()
+		if reply.Term > rf.currentTerm {
+			rf.setNewTermBybiggerTerm(reply.Term)
+		}
+	}
 	return ok
 }
 
+func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *AppendEntriesReply) bool {
+	ok := rf.peers[server].Call("Raft.AppendEntries", args, reply)
+	if ok {
+		rf.mu.Lock()
+		defer rf.mu.Unlock()
+		if reply.Term > rf.currentTerm {
+			rf.setNewTermBybiggerTerm(reply.Term)
+		}
+	}
+	return ok
+}
 
 // the service using Raft (e.g. a k/v server) wants to start
 // agreement on the next command to be appended to Raft's log. if this
@@ -169,7 +275,6 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader := true
 
 	// Your code here (3B).
-
 
 	return index, term, isLeader
 }
@@ -193,18 +298,191 @@ func (rf *Raft) killed() bool {
 	return z == 1
 }
 
-func (rf *Raft) ticker() {
-	for rf.killed() == false {
+func GetElectionTimeout() int64 {
+	return 200 + (rand.Int63() % 301)
+}
 
+func (rf *Raft) sendHeartBeat() {
+	rf.mu.Lock()
+	//rf.lastHeartBeat = time.Now()//student guide说不需要
+	//LeaderID := rf.me
+	args := AppendEntriesArgs{
+		Term:     rf.currentTerm,
+		LeaderID: rf.me,
+
+		//设置prevLogIndex和Term,
+
+		//log不用设置
+
+		//设置leaderCommit
+
+	}
+	rf.mu.Unlock()
+	for serverID, _ := range rf.peers {
+		if serverID != rf.me {
+			go func(serverID int) {
+				reply := AppendEntriesReply{}
+				//fmt.Printf("LeaderID:%d---向serverID:%d---发送心跳\n", LeaderID, serverID)
+				rf.sendAppendEntries(serverID, &args, &reply)
+			}(serverID)
+		}
+	}
+}
+
+func (rf *Raft) ticker() { //心跳机制
+	for rf.killed() == false {
+		//fmt.Printf("serverID:%d---进入ticker\n", rf.me)
 		// Your code here (3A)
 		// Check if a leader election should be started.
 
-
 		// pause for a random amount of time between 50 and 350
 		// milliseconds.
-		ms := 50 + (rand.Int63() % 300)
-		time.Sleep(time.Duration(ms) * time.Millisecond)
+		time.Sleep(rf.heartBeat)
+		//如果整体上锁，整个操作会具有原子性，但是我们不能在RPC的时候上锁等待回应
+		rf.mu.Lock()
+		state := rf.state
+		rf.mu.Unlock()
+		if state == Leader {
+			go rf.sendHeartBeat() //应该用线程，否则会阻塞//heartbeat有等幂性，无所谓同时收到多条
+		} else {
+			electionTimeout := GetElectionTimeout()
+			//fmt.Printf("serverID:%d---状态为%s\n", rf.me, rf.state)
+			rf.mu.Lock()
+			needElection := time.Since(rf.lastHeartBeat).Milliseconds() > electionTimeout
+			rf.mu.Unlock()
+			//timeout
+			if needElection {
+				go rf.becomeCandidate() //student guide上面说：即使现在正在选举，我也应该开始新的选举。选举不应该被RPC的延迟而阻塞。
+			}
+		}
 	}
+}
+
+//func (rf *Raft) heartBeatLoop() {
+//	for {
+//		rf.mu.Lock()
+//		if rf.state != Leader {
+//			rf.mu.Unlock()
+//			break
+//		}
+//		rf.lastHeartBeat = time.Now()
+//		//LeaderID := rf.me
+//		args := AppendEntriesArgs{
+//			Term:     rf.currentTerm,
+//			LeaderID: rf.me,
+//
+//			//设置prevLogIndex和Term,
+//
+//			//log不用设置
+//
+//			//设置leaderCommit
+//
+//		}
+//		rf.mu.Unlock()
+//
+//		//尝试设置Leader降级
+//		//serverNum := len(rf.peers)
+//		//failCount := 0
+//		//sendCount := 0
+//		//mu := sync.Mutex{}
+//		//wg := sync.WaitGroup{}
+//		/////////////////
+//		for serverID, _ := range rf.peers {
+//			if serverID != rf.me {
+//				//wg.Add(1)
+//				go func(serverID int) {
+//					reply := AppendEntriesReply{}
+//					//fmt.Printf("LeaderID:%d---向serverID:%d---发送心跳\n", LeaderID, serverID)
+//					rf.sendAppendEntries(serverID, &args, &reply)
+//					////降级相关
+//					//mu.Lock()
+//					//sendCount++
+//					//if ok == false {
+//					//	failCount++
+//					//}
+//					//mu.Unlock()
+//					//wg.Done()
+//				}(serverID)
+//			}
+//		}
+//		//wg.Wait()
+//		//if failCount > serverNum/2 {
+//		//	rf.mu.Lock()
+//		//	rf.state = Follower
+//		//	rf.voteFor = -1
+//		//	rf.mu.Unlock()
+//		//}
+//
+//		time.Sleep(rf.heartBeat) //等待下一次心跳
+//	}
+//}
+
+func (rf *Raft) becomeLeader() {
+	rf.mu.Lock()
+
+	rf.state = Leader
+	//后续还需要设置nextIndex以及matchIndex
+	rf.mu.Unlock()
+	//go rf.heartBeatLoop()
+	go rf.sendHeartBeat() //上任需要发送一次心跳
+	//发送no-op命令
+}
+
+func (rf *Raft) becomeCandidate() {
+	rf.mu.Lock()
+
+	rf.state = Candidate
+	rf.currentTerm++
+	rf.voteFor = rf.me
+	rf.lastHeartBeat = time.Now()
+	args := RequestVoteArgs{
+		Term:        rf.currentTerm,
+		CandidateID: rf.me,
+		//LastLogIndex:0
+		//LastLogTerm:0
+	}
+	fmt.Printf("term:%d,serverID:%d---成为候选者\n", args.Term, rf.me)
+	rf.mu.Unlock()
+	//向每个节点请求投票
+	mu := sync.Mutex{}
+	cond := sync.NewCond(&mu)
+	wg := sync.WaitGroup{}
+	grantedCount := 1
+	receivedCount := 1
+	serverNum := len(rf.peers)
+	//fmt.Printf("当前服务器的总数为:%d\n", len(rf.peers))
+	for serverID, _ := range rf.peers {
+		if serverID != rf.me {
+			wg.Add(1)
+			go func(serverID int) {
+				//为每条请求设置单独的reply
+				reply := RequestVoteReply{}
+				ok := rf.sendRequestVote(serverID, &args, &reply)
+				mu.Lock()
+				//rpc请求可能传输不到，这种情况下我们也默认传输到了，算作被拒绝
+				receivedCount++
+				if ok && reply.VoteGranted {
+					grantedCount++
+					fmt.Printf("term:%d,serverID:%d---收到了来自serverID:%d,对方同意了投票\n", args.Term, rf.me, serverID)
+				}
+				mu.Unlock()
+				wg.Done()
+				cond.Broadcast()
+			}(serverID)
+		}
+	}
+	mu.Lock()
+	//思考：可能会一直被阻塞吗？
+	for grantedCount <= serverNum/2 && receivedCount < serverNum {
+		cond.Wait()
+	}
+	//fmt.Printf("term:%d,serverID:%d---获得的总票数为:%d\n", rf.currentTerm, rf.me, grantedCount)
+	if grantedCount > serverNum/2 {
+		fmt.Printf("term:%d,serverID:%d---成为Leader\n", rf.currentTerm, rf.me)
+		go rf.becomeLeader()
+	}
+	mu.Unlock()
+	wg.Wait()
 }
 
 // the service or tester wants to create a Raft server. the ports
@@ -216,21 +494,63 @@ func (rf *Raft) ticker() {
 // tester or service expects Raft to send ApplyMsg messages.
 // Make() must return quickly, so it should start goroutines
 // for any long-running work.
+
+//type Raft struct {
+//	//MIT6824专门需要的
+
+//	mu        sync.Mutex          // Lock to protect shared access to this peer's state
+//  //cond	  *sync.Cond
+//	peers     []*labrpc.ClientEnd // RPC end points of all peers
+//	persister *tester.Persister   // Object to hold this peer's persisted state
+//	me        int                 // this peer's index into peers[]
+//	dead      int32               // set by Kill()
+//	applyCh chan raftapi.ApplyMsg
+
+//	//所有server维护的需要持久化存储的：
+//	currentTerm int
+//	voteFor     int
+//	log         []LogEntry
+//	//所有server维护的volatile的
+//	commitIndex int
+//	lastApplied int
+//
+//	//Leader使用到的
+//	leaderTool LeaderTool
+//
+
+//}
+
 func Make(peers []*labrpc.ClientEnd, me int,
 	persister *tester.Persister, applyCh chan raftapi.ApplyMsg) raftapi.Raft {
 	rf := &Raft{}
+	//工具类的设置
 	rf.peers = peers
 	rf.persister = persister
 	rf.me = me
-
-	// Your initialization code here (3A, 3B, 3C).
-
+	rf.applyCh = applyCh
+	//rf.cond = sync.NewCond(&rf.mu)
+	//持久化数据
+	rf.currentTerm = 0
+	rf.voteFor = -1
+	rf.log = make([]LogEntry, 0)
+	//非持久化数据
+	rf.commitIndex = -1
+	rf.lastApplied = -1
+	//Leader相关数据
+	rf.leaderTool = LeaderTool{} //选上了再初始化
+	//一些没有提到但是需要的
+	rf.state = Follower
+	rf.leaderID = -1
+	rf.lastHeartBeat = time.Now()
+	//心跳的时间间隔：
+	rf.heartBeat = time.Duration(50) * time.Millisecond
+	rf.minimumElectionTimeout = 100 * time.Millisecond
+	//fmt.Printf("serverID:%d---创建\n", me)
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 
 	// start ticker goroutine to start elections
-	go rf.ticker()
-
+	go rf.ticker() //初始化完毕，投入工作
 
 	return rf
 }

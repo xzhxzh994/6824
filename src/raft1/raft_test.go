@@ -65,6 +65,7 @@ func TestReElection3A(t *testing.T) {
 	leader1 := ts.checkOneLeader()
 
 	// if the leader disconnects, a new one should be elected.
+	fmt.Println("让leader断连")
 	ts.g.DisconnectAll(leader1)
 	tester.AnnotateConnection(ts.g.GetConnected())
 	ts.checkOneLeader()
@@ -72,12 +73,15 @@ func TestReElection3A(t *testing.T) {
 	// if the old leader rejoins, that shouldn't
 	// disturb the new leader. and the old leader
 	// should switch to follower.
+	fmt.Println("让leader重连")
 	ts.g.ConnectOne(leader1)
 	tester.AnnotateConnection(ts.g.GetConnected())
+	fmt.Println("检查leader，保证只能有一个leader")
 	leader2 := ts.checkOneLeader()
 
 	// if there's no quorum, no new leader should
 	// be elected.
+	fmt.Println("所有节点断连")
 	ts.g.DisconnectAll(leader2)
 	ts.g.DisconnectAll((leader2 + 1) % servers)
 	tester.AnnotateConnection(ts.g.GetConnected())
@@ -85,11 +89,14 @@ func TestReElection3A(t *testing.T) {
 
 	// check that the one connected server
 	// does not think it is the leader.
+	fmt.Println("检查谁是leader")
 	ts.checkNoLeader()
 
+	fmt.Println("产生majority分区") //*******
 	// if a quorum arises, it should elect a leader.
 	ts.g.ConnectOne((leader2 + 1) % servers)
 	tester.AnnotateConnection(ts.g.GetConnected())
+	fmt.Println("检查谁是leader")
 	ts.checkOneLeader()
 
 	// re-join of last node shouldn't prevent leader from existing.
@@ -114,6 +121,7 @@ func TestManyElections3A(t *testing.T) {
 		i1 := rand.Int() % servers
 		i2 := rand.Int() % servers
 		i3 := rand.Int() % servers
+		fmt.Printf("测试次数:%d---准备下线节点号: %d %d %d ---\n", ii, i1, i2, i3)
 		ts.g.DisconnectAll(i1)
 		ts.g.DisconnectAll(i2)
 		ts.g.DisconnectAll(i3)
@@ -122,7 +130,7 @@ func TestManyElections3A(t *testing.T) {
 		// either the current leader should still be alive,
 		// or the remaining four should elect a new one.
 		ts.checkOneLeader()
-
+		fmt.Printf("测试次数:%d---重连节点:     %d %d %d ---\n", ii, i1, i2, i3)
 		ts.g.ConnectOne(i1)
 		ts.g.ConnectOne(i2)
 		ts.g.ConnectOne(i3)

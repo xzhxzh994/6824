@@ -1,0 +1,2053 @@
+============================== Test Run 1 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:0---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   296 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+term:1,serverID:2---成为Leader
+leader is 2
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:0---成为候选者
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:0,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+leader is 1
+所有节点断连
+term:4,serverID:2---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:2---成为候选者
+term:5,serverID:2---收到了来自serverID:0,对方同意了投票
+term:5,serverID:2---成为Leader
+leader is 2
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+term:6,serverID:1---收到了来自serverID:2,对方同意了投票
+term:6,serverID:1---成为Leader
+leader is 1
+  ... Passed --  time  6.9s #peers 3 #RPCs   664 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:5---成为候选者
+term:1,serverID:5---收到了来自serverID:0,对方同意了投票
+term:1,serverID:5---收到了来自serverID:2,对方同意了投票
+term:1,serverID:5---收到了来自serverID:1,对方同意了投票
+term:1,serverID:5---收到了来自serverID:6,对方同意了投票
+term:1,serverID:5---收到了来自serverID:4,对方同意了投票
+term:1,serverID:5---成为Leader
+term:1,serverID:5---收到了来自serverID:3,对方同意了投票
+leader is 5
+term:2,serverID:4---成为候选者
+term:2,serverID:0---成为候选者
+leader is 5
+term:2,serverID:6---成为候选者
+term:2,serverID:6---收到了来自serverID:2,对方同意了投票
+term:2,serverID:6---收到了来自serverID:1,对方同意了投票
+term:2,serverID:6---收到了来自serverID:3,对方同意了投票
+term:2,serverID:6---成为Leader
+term:3,serverID:3---成为候选者
+term:3,serverID:3---收到了来自serverID:0,对方同意了投票
+term:3,serverID:3---收到了来自serverID:2,对方同意了投票
+term:3,serverID:3---收到了来自serverID:1,对方同意了投票
+term:3,serverID:3---成为Leader
+term:3,serverID:3---收到了来自serverID:6,对方同意了投票
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:6,对方同意了投票
+term:4,serverID:1---收到了来自serverID:3,对方同意了投票
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+term:4,serverID:1---成为Leader
+leader is 1
+term:5,serverID:2---成为候选者
+term:5,serverID:5---成为候选者
+term:5,serverID:5---收到了来自serverID:4,对方同意了投票
+term:5,serverID:5---收到了来自serverID:6,对方同意了投票
+term:5,serverID:5---收到了来自serverID:0,对方同意了投票
+term:5,serverID:5---成为Leader
+term:5,serverID:5---收到了来自serverID:3,对方同意了投票
+leader is 5
+leader is 5
+leader is 1
+leader is 5
+leader is 1
+leader is 5
+leader is 1
+leader is 5
+leader is 1
+leader is 1
+leader is 5
+  ... Passed --  time  5.5s #peers 7 #RPCs   726 #Ops    0
+PASS
+ok  	6.5840/raft1	15.584s
+
+============================== Test Run 2 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+让leader断连
+term:2,serverID:0---成为候选者
+term:2,serverID:0---收到了来自serverID:1,对方同意了投票
+term:2,serverID:0---成为Leader
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:0,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:2---成为候选者
+term:4,serverID:2---收到了来自serverID:1,对方同意了投票
+term:4,serverID:2---成为Leader
+term:4,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:1---成为候选者
+term:5,serverID:1---收到了来自serverID:0,对方同意了投票
+term:5,serverID:1---成为Leader
+leader is 1
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+  ... Passed --  time  4.9s #peers 3 #RPCs   458 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:6,对方同意了投票
+term:1,serverID:0---收到了来自serverID:3,对方同意了投票
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:5,对方同意了投票
+term:1,serverID:0---收到了来自serverID:4,对方同意了投票
+leader is 0
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:1,对方同意了投票
+term:2,serverID:2---收到了来自serverID:6,对方同意了投票
+term:2,serverID:2---收到了来自serverID:5,对方同意了投票
+term:2,serverID:2---成为Leader
+term:2,serverID:4---成为候选者
+term:2,serverID:3---成为候选者
+term:3,serverID:6---成为候选者
+term:3,serverID:1---成为候选者
+term:3,serverID:6---收到了来自serverID:5,对方同意了投票
+term:3,serverID:6---收到了来自serverID:2,对方同意了投票
+term:4,serverID:5---成为候选者
+term:4,serverID:5---收到了来自serverID:6,对方同意了投票
+term:4,serverID:5---收到了来自serverID:2,对方同意了投票
+term:4,serverID:5---收到了来自serverID:1,对方同意了投票
+term:4,serverID:5---成为Leader
+leader is 5
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:4,对方同意了投票
+term:5,serverID:0---收到了来自serverID:2,对方同意了投票
+term:5,serverID:0---收到了来自serverID:3,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+leader is 0
+leader is 5
+leader is 0
+term:5,serverID:1---成为候选者
+leader is 0
+leader is 0
+leader is 5
+leader is 0
+leader is 5
+leader is 0
+leader is 5
+leader is 5
+leader is 0
+leader is 5
+  ... Passed --  time  5.6s #peers 7 #RPCs   360 #Ops    0
+PASS
+ok  	6.5840/raft1	13.629s
+
+============================== Test Run 3 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:2,对方同意了投票
+term:2,serverID:1---成为Leader
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:1,对方同意了投票
+term:3,serverID:2---成为Leader
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+leader is 0
+所有节点断连
+term:5,serverID:1---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:2---成为候选者
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-1926594666.html
+--- FAIL: TestReElection3A (8.30s)
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:3---成为候选者
+term:1,serverID:3---收到了来自serverID:6,对方同意了投票
+term:1,serverID:3---收到了来自serverID:1,对方同意了投票
+term:1,serverID:3---收到了来自serverID:2,对方同意了投票
+term:1,serverID:3---收到了来自serverID:5,对方同意了投票
+term:1,serverID:3---收到了来自serverID:0,对方同意了投票
+term:1,serverID:3---成为Leader
+term:1,serverID:3---收到了来自serverID:4,对方同意了投票
+leader is 3
+term:2,serverID:4---成为候选者
+term:2,serverID:6---成为候选者
+term:2,serverID:5---成为候选者
+leader is 3
+term:2,serverID:2---成为候选者
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:0,对方同意了投票
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:5,对方同意了投票
+term:3,serverID:0---收到了来自serverID:6,对方同意了投票
+term:3,serverID:0---收到了来自serverID:4,对方同意了投票
+term:3,serverID:0---成为Leader
+term:3,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+term:4,serverID:3---成为候选者
+term:4,serverID:3---收到了来自serverID:5,对方同意了投票
+term:4,serverID:3---收到了来自serverID:2,对方同意了投票
+term:4,serverID:3---收到了来自serverID:0,对方同意了投票
+term:4,serverID:3---成为Leader
+leader is 3
+leader is 3
+leader is 3
+term:4,serverID:4---成为候选者
+term:4,serverID:4---收到了来自serverID:5,对方同意了投票
+term:4,serverID:4---收到了来自serverID:2,对方同意了投票
+term:4,serverID:4---收到了来自serverID:0,对方同意了投票
+term:4,serverID:4---成为Leader
+leader is 4
+leader is 3
+term:5,serverID:0---成为候选者
+leader is 3
+leader is 4
+term:5,serverID:2---成为候选者
+term:5,serverID:2---收到了来自serverID:5,对方同意了投票
+term:5,serverID:2---收到了来自serverID:3,对方同意了投票
+term:5,serverID:2---收到了来自serverID:4,对方同意了投票
+term:5,serverID:2---收到了来自serverID:1,对方同意了投票
+term:5,serverID:2---收到了来自serverID:6,对方同意了投票
+term:5,serverID:2---成为Leader
+leader is 2
+  ... Passed --  time  7.1s #peers 7 #RPCs   618 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	18.395s
+
+============================== Test Run 4 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:2,对方同意了投票
+term:2,serverID:1---成为Leader
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:1,对方同意了投票
+term:3,serverID:2---成为Leader
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:1---成为候选者
+term:5,serverID:1---收到了来自serverID:2,对方同意了投票
+term:5,serverID:1---成为Leader
+leader is 1
+term:6,serverID:0---成为候选者
+term:6,serverID:0---收到了来自serverID:2,对方同意了投票
+term:6,serverID:0---成为Leader
+term:6,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+  ... Passed --  time  6.9s #peers 3 #RPCs   652 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---收到了来自serverID:3,对方同意了投票
+term:1,serverID:2---收到了来自serverID:6,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+term:1,serverID:2---收到了来自serverID:5,对方同意了投票
+term:1,serverID:2---收到了来自serverID:4,对方同意了投票
+leader is 2
+term:2,serverID:0---成为候选者
+term:2,serverID:0---收到了来自serverID:5,对方同意了投票
+term:2,serverID:0---收到了来自serverID:6,对方同意了投票
+term:2,serverID:0---收到了来自serverID:4,对方同意了投票
+term:2,serverID:0---成为Leader
+term:2,serverID:1---成为候选者
+term:2,serverID:3---成为候选者
+term:3,serverID:6---成为候选者
+term:3,serverID:6---收到了来自serverID:5,对方同意了投票
+term:3,serverID:6---收到了来自serverID:0,对方同意了投票
+term:3,serverID:6---收到了来自serverID:4,对方同意了投票
+term:3,serverID:6---成为Leader
+leader is 6
+term:4,serverID:4---成为候选者
+term:4,serverID:4---收到了来自serverID:5,对方同意了投票
+term:4,serverID:4---收到了来自serverID:2,对方同意了投票
+term:4,serverID:4---收到了来自serverID:3,对方同意了投票
+term:4,serverID:4---成为Leader
+term:4,serverID:4---收到了来自serverID:1,对方同意了投票
+term:5,serverID:5---成为候选者
+term:5,serverID:5---收到了来自serverID:1,对方同意了投票
+term:5,serverID:5---收到了来自serverID:3,对方同意了投票
+term:5,serverID:5---收到了来自serverID:4,对方同意了投票
+term:5,serverID:5---收到了来自serverID:2,对方同意了投票
+term:5,serverID:5---成为Leader
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:4,对方同意了投票
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---收到了来自serverID:5,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:3,对方同意了投票
+leader is 2
+leader is 2
+leader is 6
+leader is 2
+leader is 6
+leader is 2
+leader is 2
+term:4,serverID:0---成为候选者
+term:7,serverID:5---成为候选者
+term:7,serverID:5---收到了来自serverID:4,对方同意了投票
+term:7,serverID:5---收到了来自serverID:1,对方同意了投票
+term:7,serverID:5---收到了来自serverID:0,对方同意了投票
+term:7,serverID:5---成为Leader
+leader is 5
+leader is 2
+leader is 2
+leader is 5
+leader is 6
+leader is 2
+leader is 5
+leader is 6
+  ... Passed --  time  6.0s #peers 7 #RPCs   336 #Ops    0
+PASS
+ok  	6.5840/raft1	15.951s
+
+============================== Test Run 5 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+让leader断连
+term:2,serverID:0---成为候选者
+term:2,serverID:0---收到了来自serverID:1,对方同意了投票
+term:2,serverID:0---成为Leader
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:0,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:2---成为候选者
+term:4,serverID:2---收到了来自serverID:1,对方同意了投票
+term:4,serverID:2---成为Leader
+term:4,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+所有节点断连
+term:5,serverID:1---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+term:6,serverID:1---成为Leader
+leader is 1
+term:7,serverID:2---成为候选者
+term:7,serverID:2---收到了来自serverID:0,对方同意了投票
+term:7,serverID:2---收到了来自serverID:1,对方同意了投票
+term:7,serverID:2---成为Leader
+leader is 2
+  ... Passed --  time  4.5s #peers 3 #RPCs   412 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:6---成为候选者
+term:1,serverID:4---成为候选者
+term:1,serverID:6---收到了来自serverID:5,对方同意了投票
+term:1,serverID:6---收到了来自serverID:0,对方同意了投票
+term:1,serverID:6---收到了来自serverID:3,对方同意了投票
+term:1,serverID:6---成为Leader
+term:1,serverID:6---收到了来自serverID:1,对方同意了投票
+term:1,serverID:6---收到了来自serverID:2,对方同意了投票
+leader is 6
+term:2,serverID:5---成为候选者
+term:2,serverID:0---成为候选者
+term:2,serverID:2---成为候选者
+leader is 6
+term:2,serverID:1---成为候选者
+term:2,serverID:4---成为候选者
+term:2,serverID:3---成为候选者
+term:2,serverID:3---收到了来自serverID:6,对方同意了投票
+term:3,serverID:6---成为候选者
+term:3,serverID:6---收到了来自serverID:0,对方同意了投票
+term:3,serverID:6---收到了来自serverID:3,对方同意了投票
+term:3,serverID:6---收到了来自serverID:2,对方同意了投票
+term:3,serverID:6---成为Leader
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---收到了来自serverID:4,对方同意了投票
+term:4,serverID:0---收到了来自serverID:5,对方同意了投票
+term:4,serverID:0---成为Leader
+leader is 0
+leader is 6
+term:5,serverID:4---成为候选者
+term:5,serverID:4---收到了来自serverID:5,对方同意了投票
+term:5,serverID:4---收到了来自serverID:2,对方同意了投票
+term:5,serverID:4---收到了来自serverID:0,对方同意了投票
+term:5,serverID:4---成为Leader
+leader is 4
+term:6,serverID:5---成为候选者
+term:6,serverID:6---成为候选者
+term:6,serverID:6---收到了来自serverID:3,对方同意了投票
+term:6,serverID:6---收到了来自serverID:1,对方同意了投票
+term:6,serverID:6---收到了来自serverID:2,对方同意了投票
+term:6,serverID:6---成为Leader
+term:7,serverID:2---成为候选者
+term:7,serverID:2---收到了来自serverID:6,对方同意了投票
+term:7,serverID:2---收到了来自serverID:3,对方同意了投票
+term:7,serverID:2---收到了来自serverID:1,对方同意了投票
+term:7,serverID:2---成为Leader
+leader is 2
+term:8,serverID:1---成为候选者
+term:8,serverID:1---收到了来自serverID:6,对方同意了投票
+term:8,serverID:1---收到了来自serverID:4,对方同意了投票
+term:8,serverID:1---收到了来自serverID:5,对方同意了投票
+term:8,serverID:1---成为Leader
+term:8,serverID:1---收到了来自serverID:3,对方同意了投票
+term:8,serverID:1---收到了来自serverID:2,对方同意了投票
+term:8,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+  ... Passed --  time  8.3s #peers 7 #RPCs   522 #Ops    0
+PASS
+ok  	6.5840/raft1	15.815s
+
+============================== Test Run 6 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   277 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:1---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+leader is 1
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:0---成为候选者
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:2,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+term:4,serverID:1---成为Leader
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:2,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:2,对方同意了投票
+term:6,serverID:1---成为Leader
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+  ... Passed --  time  5.9s #peers 3 #RPCs   544 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:4---成为候选者
+term:1,serverID:2---收到了来自serverID:5,对方同意了投票
+term:1,serverID:4---收到了来自serverID:6,对方同意了投票
+term:1,serverID:2---收到了来自serverID:3,对方同意了投票
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:4---收到了来自serverID:0,对方同意了投票
+term:1,serverID:2---成为Leader
+leader is 2
+term:2,serverID:6---成为候选者
+term:2,serverID:1---成为候选者
+term:2,serverID:0---成为候选者
+leader is 2
+term:2,serverID:5---成为候选者
+term:2,serverID:5---收到了来自serverID:4,对方同意了投票
+term:2,serverID:5---收到了来自serverID:2,对方同意了投票
+term:2,serverID:5---收到了来自serverID:3,对方同意了投票
+term:2,serverID:5---成为Leader
+term:3,serverID:4---成为候选者
+term:3,serverID:4---收到了来自serverID:5,对方同意了投票
+term:3,serverID:4---收到了来自serverID:1,对方同意了投票
+term:3,serverID:4---收到了来自serverID:3,对方同意了投票
+term:3,serverID:4---收到了来自serverID:2,对方同意了投票
+term:3,serverID:4---成为Leader
+leader is 4
+term:4,serverID:2---成为候选者
+term:4,serverID:3---成为候选者
+term:4,serverID:3---收到了来自serverID:1,对方同意了投票
+term:4,serverID:3---收到了来自serverID:5,对方同意了投票
+term:4,serverID:3---收到了来自serverID:0,对方同意了投票
+term:4,serverID:3---成为Leader
+leader is 3
+leader is 3
+leader is 4
+leader is 3
+leader is 4
+leader is 4
+leader is 3
+leader is 4
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:6,对方同意了投票
+term:5,serverID:0---收到了来自serverID:4,对方同意了投票
+term:5,serverID:0---收到了来自serverID:5,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+term:6,serverID:3---成为候选者
+term:6,serverID:3---收到了来自serverID:2,对方同意了投票
+term:6,serverID:3---收到了来自serverID:5,对方同意了投票
+term:6,serverID:3---收到了来自serverID:4,对方同意了投票
+term:6,serverID:3---成为Leader
+term:6,serverID:3---收到了来自serverID:0,对方同意了投票
+term:6,serverID:3---收到了来自serverID:6,对方同意了投票
+term:6,serverID:3---收到了来自serverID:1,对方同意了投票
+leader is 3
+  ... Passed --  time  5.4s #peers 7 #RPCs   366 #Ops    0
+PASS
+ok  	6.5840/raft1	14.329s
+
+============================== Test Run 7 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   290 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:0,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:2,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+term:4,serverID:1---成为Leader
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:2,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+term:6,serverID:1---收到了来自serverID:2,对方同意了投票
+term:6,serverID:1---成为Leader
+leader is 1
+  ... Passed --  time  6.6s #peers 3 #RPCs   610 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:4---成为候选者
+term:1,serverID:5---成为候选者
+term:1,serverID:4---收到了来自serverID:3,对方同意了投票
+term:1,serverID:5---收到了来自serverID:0,对方同意了投票
+term:1,serverID:5---收到了来自serverID:6,对方同意了投票
+term:1,serverID:4---收到了来自serverID:1,对方同意了投票
+term:1,serverID:4---收到了来自serverID:2,对方同意了投票
+term:1,serverID:4---成为Leader
+leader is 4
+term:2,serverID:5---成为候选者
+term:2,serverID:2---成为候选者
+leader is 4
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:6,对方同意了投票
+term:2,serverID:1---收到了来自serverID:3,对方同意了投票
+term:2,serverID:1---收到了来自serverID:4,对方同意了投票
+term:2,serverID:1---成为Leader
+term:2,serverID:0---成为候选者
+term:3,serverID:4---成为候选者
+term:3,serverID:4---收到了来自serverID:5,对方同意了投票
+term:3,serverID:4---收到了来自serverID:2,对方同意了投票
+term:3,serverID:4---收到了来自serverID:3,对方同意了投票
+term:3,serverID:4---成为Leader
+term:3,serverID:4---收到了来自serverID:6,对方同意了投票
+term:3,serverID:4---收到了来自serverID:1,对方同意了投票
+leader is 4
+term:4,serverID:3---成为候选者
+term:4,serverID:6---成为候选者
+term:4,serverID:6---收到了来自serverID:4,对方同意了投票
+term:4,serverID:6---收到了来自serverID:1,对方同意了投票
+term:4,serverID:6---收到了来自serverID:0,对方同意了投票
+term:4,serverID:6---成为Leader
+term:5,serverID:4---成为候选者
+term:5,serverID:4---收到了来自serverID:0,对方同意了投票
+term:5,serverID:4---收到了来自serverID:1,对方同意了投票
+term:5,serverID:4---收到了来自serverID:6,对方同意了投票
+term:5,serverID:4---成为Leader
+leader is 4
+term:6,serverID:1---成为候选者
+term:4,serverID:2---成为候选者
+term:4,serverID:2---收到了来自serverID:5,对方同意了投票
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:131
+info: wrote visualization to /tmp/porcupine-2049947841.html
+--- FAIL: TestManyElections3A (7.10s)
+FAIL
+exit status 1
+FAIL	6.5840/raft1	16.774s
+
+============================== Test Run 8 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   286 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:0,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:2,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+term:4,serverID:1---成为Leader
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+所有节点断连
+term:5,serverID:2---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:0---成为候选者
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+term:6,serverID:2---成为Leader
+leader is 2
+term:7,serverID:1---成为候选者
+term:7,serverID:1---收到了来自serverID:0,对方同意了投票
+term:7,serverID:1---成为Leader
+term:7,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+  ... Passed --  time  6.5s #peers 3 #RPCs   608 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:4---成为候选者
+term:1,serverID:4---收到了来自serverID:3,对方同意了投票
+term:1,serverID:4---收到了来自serverID:2,对方同意了投票
+term:1,serverID:4---收到了来自serverID:1,对方同意了投票
+term:1,serverID:4---成为Leader
+term:1,serverID:4---收到了来自serverID:6,对方同意了投票
+term:1,serverID:4---收到了来自serverID:5,对方同意了投票
+term:1,serverID:4---收到了来自serverID:0,对方同意了投票
+leader is 4
+term:2,serverID:2---成为候选者
+term:2,serverID:6---成为候选者
+leader is 4
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:4,对方同意了投票
+term:2,serverID:1---收到了来自serverID:0,对方同意了投票
+term:2,serverID:1---收到了来自serverID:3,对方同意了投票
+term:2,serverID:1---成为Leader
+term:2,serverID:5---成为候选者
+term:3,serverID:0---成为候选者
+term:3,serverID:3---成为候选者
+term:3,serverID:0---收到了来自serverID:6,对方同意了投票
+term:3,serverID:3---收到了来自serverID:1,对方同意了投票
+term:3,serverID:3---收到了来自serverID:4,对方同意了投票
+term:4,serverID:4---成为候选者
+term:4,serverID:4---收到了来自serverID:6,对方同意了投票
+term:4,serverID:4---收到了来自serverID:0,对方同意了投票
+term:4,serverID:4---收到了来自serverID:3,对方同意了投票
+term:4,serverID:4---收到了来自serverID:1,对方同意了投票
+term:4,serverID:4---成为Leader
+leader is 4
+leader is 4
+leader is 4
+leader is 4
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:6,对方同意了投票
+term:5,serverID:0---收到了来自serverID:5,对方同意了投票
+term:5,serverID:0---收到了来自serverID:1,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+leader is 4
+leader is 0
+leader is 4
+leader is 4
+term:3,serverID:2---成为候选者
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:6,对方同意了投票
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---收到了来自serverID:3,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:4,对方同意了投票
+term:6,serverID:2---收到了来自serverID:5,对方同意了投票
+leader is 2
+  ... Passed --  time  5.9s #peers 7 #RPCs   419 #Ops    0
+PASS
+ok  	6.5840/raft1	15.449s
+
+============================== Test Run 9 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   282 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:0---成为候选者
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:0,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:2---成为候选者
+term:4,serverID:2---收到了来自serverID:1,对方同意了投票
+term:4,serverID:2---成为Leader
+term:4,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:1,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+leader is 2
+  ... Passed --  time  6.0s #peers 3 #RPCs   554 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:3---成为候选者
+term:1,serverID:2---收到了来自serverID:5,对方同意了投票
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:3---收到了来自serverID:6,对方同意了投票
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:4,对方同意了投票
+term:1,serverID:3---收到了来自serverID:5,对方同意了投票
+leader is 2
+term:2,serverID:6---成为候选者
+term:2,serverID:0---成为候选者
+term:2,serverID:3---成为候选者
+leader is 2
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:3,对方同意了投票
+term:3,serverID:2---收到了来自serverID:4,对方同意了投票
+term:3,serverID:2---收到了来自serverID:6,对方同意了投票
+term:3,serverID:2---成为Leader
+term:3,serverID:2---收到了来自serverID:5,对方同意了投票
+term:2,serverID:1---成为候选者
+term:4,serverID:5---成为候选者
+term:4,serverID:5---收到了来自serverID:2,对方同意了投票
+term:4,serverID:5---收到了来自serverID:6,对方同意了投票
+term:4,serverID:5---收到了来自serverID:4,对方同意了投票
+term:4,serverID:5---成为Leader
+term:4,serverID:5---收到了来自serverID:3,对方同意了投票
+leader is 5
+term:5,serverID:4---成为候选者
+term:5,serverID:3---成为候选者
+term:5,serverID:3---收到了来自serverID:6,对方同意了投票
+term:5,serverID:3---收到了来自serverID:1,对方同意了投票
+term:5,serverID:3---收到了来自serverID:2,对方同意了投票
+term:5,serverID:3---成为Leader
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:6,对方同意了投票
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---收到了来自serverID:3,对方同意了投票
+term:6,serverID:2---成为Leader
+leader is 2
+term:7,serverID:5---成为候选者
+term:7,serverID:5---收到了来自serverID:6,对方同意了投票
+term:7,serverID:5---收到了来自serverID:2,对方同意了投票
+term:7,serverID:5---收到了来自serverID:1,对方同意了投票
+term:7,serverID:5---成为Leader
+term:8,serverID:6---成为候选者
+term:8,serverID:6---收到了来自serverID:5,对方同意了投票
+term:8,serverID:6---收到了来自serverID:2,对方同意了投票
+term:8,serverID:6---收到了来自serverID:1,对方同意了投票
+term:8,serverID:6---成为Leader
+leader is 6
+leader is 6
+leader is 6
+leader is 6
+term:3,serverID:0---成为候选者
+leader is 6
+term:9,serverID:1---成为候选者
+term:6,serverID:4---成为候选者
+term:6,serverID:4---收到了来自serverID:0,对方同意了投票
+term:6,serverID:4---收到了来自serverID:3,对方同意了投票
+term:7,serverID:3---成为候选者
+term:7,serverID:3---收到了来自serverID:0,对方同意了投票
+term:9,serverID:2---成为候选者
+term:9,serverID:2---收到了来自serverID:5,对方同意了投票
+term:9,serverID:2---收到了来自serverID:3,对方同意了投票
+term:9,serverID:2---收到了来自serverID:4,对方同意了投票
+term:9,serverID:2---成为Leader
+term:9,serverID:2---收到了来自serverID:0,对方同意了投票
+term:10,serverID:5---成为候选者
+term:10,serverID:5---收到了来自serverID:0,对方同意了投票
+term:10,serverID:5---收到了来自serverID:2,对方同意了投票
+term:10,serverID:5---收到了来自serverID:3,对方同意了投票
+term:10,serverID:5---成为Leader
+term:10,serverID:5---收到了来自serverID:4,对方同意了投票
+leader is 5
+term:11,serverID:6---成为候选者
+term:11,serverID:6---收到了来自serverID:5,对方同意了投票
+term:11,serverID:6---收到了来自serverID:2,对方同意了投票
+term:11,serverID:6---收到了来自serverID:3,对方同意了投票
+term:11,serverID:6---收到了来自serverID:0,对方同意了投票
+term:11,serverID:6---成为Leader
+term:11,serverID:6---收到了来自serverID:4,对方同意了投票
+term:11,serverID:6---收到了来自serverID:1,对方同意了投票
+leader is 6
+  ... Passed --  time 12.7s #peers 7 #RPCs   894 #Ops    0
+PASS
+ok  	6.5840/raft1	21.700s
+
+============================== Test Run 10 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   280 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:2---成为候选者
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:71
+info: wrote visualization to /tmp/porcupine-1176929899.html
+--- FAIL: TestReElection3A (5.48s)
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:4---成为候选者
+term:1,serverID:0---成为候选者
+term:1,serverID:4---收到了来自serverID:2,对方同意了投票
+term:1,serverID:4---收到了来自serverID:6,对方同意了投票
+term:1,serverID:4---收到了来自serverID:3,对方同意了投票
+term:1,serverID:4---成为Leader
+term:1,serverID:4---收到了来自serverID:5,对方同意了投票
+term:1,serverID:4---收到了来自serverID:1,对方同意了投票
+leader is 4
+term:2,serverID:5---成为候选者
+term:2,serverID:2---成为候选者
+term:2,serverID:1---成为候选者
+leader is 4
+term:2,serverID:6---成为候选者
+term:3,serverID:4---成为候选者
+term:2,serverID:6---收到了来自serverID:3,对方同意了投票
+term:2,serverID:6---收到了来自serverID:0,对方同意了投票
+term:3,serverID:4---收到了来自serverID:6,对方同意了投票
+term:3,serverID:4---收到了来自serverID:2,对方同意了投票
+term:3,serverID:4---收到了来自serverID:3,对方同意了投票
+term:3,serverID:4---收到了来自serverID:0,对方同意了投票
+term:3,serverID:4---成为Leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:4,对方同意了投票
+term:4,serverID:0---收到了来自serverID:6,对方同意了投票
+term:4,serverID:0---收到了来自serverID:3,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+leader is 0
+term:5,serverID:3---成为候选者
+term:5,serverID:3---收到了来自serverID:2,对方同意了投票
+term:5,serverID:3---收到了来自serverID:5,对方同意了投票
+term:5,serverID:3---收到了来自serverID:0,对方同意了投票
+term:5,serverID:3---成为Leader
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+leader is 3
+term:5,serverID:6---成为候选者
+term:6,serverID:5---成为候选者
+term:3,serverID:1---成为候选者
+term:5,serverID:4---成为候选者
+term:5,serverID:4---收到了来自serverID:0,对方同意了投票
+term:5,serverID:4---收到了来自serverID:1,对方同意了投票
+term:5,serverID:4---收到了来自serverID:2,对方同意了投票
+term:5,serverID:4---成为Leader
+leader is 4
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:6,对方同意了投票
+term:6,serverID:2---收到了来自serverID:4,对方同意了投票
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+term:6,serverID:2---收到了来自serverID:3,对方同意了投票
+leader is 2
+  ... Passed --  time  7.9s #peers 7 #RPCs  1290 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	16.382s
+
+============================== Test Run 11 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   288 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+让leader断连
+term:2,serverID:0---成为候选者
+term:2,serverID:2---成为候选者
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:2,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+term:4,serverID:1---成为Leader
+leader is 1
+所有节点断连
+term:5,serverID:0---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:2---成为候选者
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-737846536.html
+--- FAIL: TestReElection3A (11.47s)
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+term:1,serverID:1---收到了来自serverID:6,对方同意了投票
+term:1,serverID:1---收到了来自serverID:4,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:3,对方同意了投票
+term:1,serverID:1---收到了来自serverID:5,对方同意了投票
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+term:2,serverID:3---成为候选者
+term:2,serverID:4---成为候选者
+term:2,serverID:2---成为候选者
+leader is 1
+term:2,serverID:5---成为候选者
+term:2,serverID:0---成为候选者
+term:2,serverID:0---收到了来自serverID:6,对方同意了投票
+term:2,serverID:0---收到了来自serverID:1,对方同意了投票
+term:3,serverID:6---成为候选者
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:0,对方同意了投票
+term:3,serverID:6---收到了来自serverID:2,对方同意了投票
+term:3,serverID:6---收到了来自serverID:3,对方同意了投票
+term:4,serverID:6---成为候选者
+term:4,serverID:6---收到了来自serverID:1,对方同意了投票
+term:4,serverID:6---收到了来自serverID:3,对方同意了投票
+term:4,serverID:6---收到了来自serverID:0,对方同意了投票
+term:4,serverID:6---成为Leader
+term:4,serverID:6---收到了来自serverID:2,对方同意了投票
+leader is 6
+leader is 6
+leader is 6
+term:5,serverID:1---成为候选者
+term:5,serverID:1---收到了来自serverID:0,对方同意了投票
+term:5,serverID:1---收到了来自serverID:3,对方同意了投票
+term:5,serverID:1---收到了来自serverID:5,对方同意了投票
+term:5,serverID:1---成为Leader
+leader is 1
+term:5,serverID:2---成为候选者
+term:5,serverID:2---收到了来自serverID:5,对方同意了投票
+term:5,serverID:2---收到了来自serverID:3,对方同意了投票
+term:5,serverID:2---收到了来自serverID:4,对方同意了投票
+term:5,serverID:2---成为Leader
+term:5,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+term:6,serverID:0---成为候选者
+leader is 1
+leader is 6
+term:6,serverID:4---成为候选者
+term:6,serverID:4---收到了来自serverID:5,对方同意了投票
+term:6,serverID:4---收到了来自serverID:3,对方同意了投票
+term:6,serverID:4---收到了来自serverID:1,对方同意了投票
+term:6,serverID:4---成为Leader
+leader is 4
+term:7,serverID:3---成为候选者
+term:7,serverID:3---收到了来自serverID:5,对方同意了投票
+term:7,serverID:3---收到了来自serverID:1,对方同意了投票
+term:7,serverID:3---收到了来自serverID:6,对方同意了投票
+term:7,serverID:3---成为Leader
+term:7,serverID:3---收到了来自serverID:0,对方同意了投票
+leader is 3
+term:8,serverID:5---成为候选者
+term:8,serverID:5---收到了来自serverID:6,对方同意了投票
+term:8,serverID:5---收到了来自serverID:2,对方同意了投票
+term:8,serverID:5---收到了来自serverID:1,对方同意了投票
+term:8,serverID:5---收到了来自serverID:3,对方同意了投票
+term:8,serverID:5---收到了来自serverID:4,对方同意了投票
+term:8,serverID:5---收到了来自serverID:0,对方同意了投票
+term:8,serverID:5---成为Leader
+leader is 5
+  ... Passed --  time  7.4s #peers 7 #RPCs   420 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	21.955s
+
+============================== Test Run 12 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:0---成为候选者
+term:1,serverID:1---成为候选者
+term:2,serverID:0---成为候选者
+term:2,serverID:0---收到了来自serverID:1,对方同意了投票
+term:2,serverID:0---收到了来自serverID:2,对方同意了投票
+term:2,serverID:0---成为Leader
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   270 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:2---成为候选者
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:1,对方同意了投票
+term:3,serverID:2---成为Leader
+leader is 2
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+term:4,serverID:0---成为Leader
+leader is 0
+所有节点断连
+term:5,serverID:1---成为候选者
+term:5,serverID:2---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-3262488391.html
+--- FAIL: TestReElection3A (9.37s)
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:1---成为候选者
+term:1,serverID:2---成为候选者
+term:1,serverID:0---收到了来自serverID:6,对方同意了投票
+term:1,serverID:1---收到了来自serverID:3,对方同意了投票
+term:1,serverID:1---收到了来自serverID:4,对方同意了投票
+term:1,serverID:1---收到了来自serverID:5,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:2---收到了来自serverID:3,对方同意了投票
+term:1,serverID:0---收到了来自serverID:5,对方同意了投票
+leader is 1
+term:2,serverID:5---成为候选者
+term:2,serverID:5---收到了来自serverID:6,对方同意了投票
+term:2,serverID:5---收到了来自serverID:2,对方同意了投票
+term:2,serverID:5---收到了来自serverID:0,对方同意了投票
+term:2,serverID:5---收到了来自serverID:3,对方同意了投票
+term:2,serverID:5---成为Leader
+term:2,serverID:4---成为候选者
+term:3,serverID:3---成为候选者
+term:3,serverID:3---收到了来自serverID:0,对方同意了投票
+term:3,serverID:3---收到了来自serverID:6,对方同意了投票
+term:3,serverID:3---收到了来自serverID:2,对方同意了投票
+term:3,serverID:3---成为Leader
+term:3,serverID:3---收到了来自serverID:5,对方同意了投票
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:6,对方同意了投票
+term:4,serverID:0---收到了来自serverID:3,对方同意了投票
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:5,对方同意了投票
+leader is 0
+term:5,serverID:6---成为候选者
+term:5,serverID:6---收到了来自serverID:0,对方同意了投票
+term:5,serverID:6---收到了来自serverID:4,对方同意了投票
+term:5,serverID:6---收到了来自serverID:5,对方同意了投票
+term:5,serverID:6---成为Leader
+term:5,serverID:6---收到了来自serverID:2,对方同意了投票
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+term:6,serverID:2---收到了来自serverID:6,对方同意了投票
+term:6,serverID:2---收到了来自serverID:5,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:4,对方同意了投票
+leader is 2
+term:7,serverID:1---成为候选者
+term:7,serverID:1---收到了来自serverID:0,对方同意了投票
+term:7,serverID:1---收到了来自serverID:6,对方同意了投票
+term:7,serverID:1---收到了来自serverID:5,对方同意了投票
+term:7,serverID:1---成为Leader
+leader is 1
+term:8,serverID:6---成为候选者
+term:8,serverID:6---收到了来自serverID:0,对方同意了投票
+term:8,serverID:6---收到了来自serverID:4,对方同意了投票
+term:8,serverID:6---收到了来自serverID:5,对方同意了投票
+term:8,serverID:6---成为Leader
+leader is 6
+leader is 1
+leader is 6
+leader is 6
+leader is 6
+leader is 2
+leader is 6
+term:9,serverID:0---成为候选者
+term:9,serverID:0---收到了来自serverID:4,对方同意了投票
+term:9,serverID:0---收到了来自serverID:1,对方同意了投票
+term:9,serverID:0---收到了来自serverID:2,对方同意了投票
+term:9,serverID:0---成为Leader
+leader is 0
+term:10,serverID:1---成为候选者
+term:10,serverID:1---收到了来自serverID:3,对方同意了投票
+term:10,serverID:1---收到了来自serverID:6,对方同意了投票
+term:10,serverID:1---收到了来自serverID:4,对方同意了投票
+term:10,serverID:1---成为Leader
+term:10,serverID:1---收到了来自serverID:5,对方同意了投票
+term:10,serverID:1---收到了来自serverID:2,对方同意了投票
+term:10,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+  ... Passed --  time  7.6s #peers 7 #RPCs   672 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	19.977s
+
+============================== Test Run 13 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+leader is 1
+  ... Passed --  time  3.0s #peers 3 #RPCs   282 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:0,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:2,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+term:4,serverID:1---成为Leader
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+所有节点断连
+term:5,serverID:0---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:2---成为候选者
+Fatal: expected one leader, got none
+        /home/xzh/6.5840/src/raft1/test.go:101
+        /home/xzh/6.5840/src/raft1/raft_test.go:100
+info: wrote visualization to /tmp/porcupine-275653136.html
+--- FAIL: TestReElection3A (8.61s)
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:6,对方同意了投票
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:4---成为候选者
+term:1,serverID:0---收到了来自serverID:5,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:3,对方同意了投票
+term:1,serverID:4---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+term:2,serverID:3---成为候选者
+term:2,serverID:1---成为候选者
+term:2,serverID:6---成为候选者
+leader is 0
+term:2,serverID:4---成为候选者
+term:2,serverID:4---收到了来自serverID:2,对方同意了投票
+term:2,serverID:5---成为候选者
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:6,对方同意了投票
+term:3,serverID:2---收到了来自serverID:1,对方同意了投票
+term:3,serverID:2---收到了来自serverID:3,对方同意了投票
+term:3,serverID:2---成为Leader
+term:3,serverID:2---收到了来自serverID:4,对方同意了投票
+leader is 2
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:6,对方同意了投票
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:3,对方同意了投票
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+leader is 0
+term:3,serverID:5---成为候选者
+term:3,serverID:5---收到了来自serverID:4,对方同意了投票
+term:5,serverID:5---成为候选者
+term:5,serverID:5---收到了来自serverID:6,对方同意了投票
+term:5,serverID:5---收到了来自serverID:0,对方同意了投票
+term:5,serverID:5---收到了来自serverID:1,对方同意了投票
+term:5,serverID:5---成为Leader
+term:5,serverID:5---收到了来自serverID:2,对方同意了投票
+term:5,serverID:5---收到了来自serverID:3,对方同意了投票
+term:5,serverID:5---收到了来自serverID:4,对方同意了投票
+leader is 5
+  ... Passed --  time  5.6s #peers 7 #RPCs   510 #Ops    0
+FAIL
+exit status 1
+FAIL	6.5840/raft1	17.247s
+
+============================== Test Run 14 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+term:1,serverID:2---成为Leader
+leader is 2
+leader is 2
+  ... Passed --  time  3.1s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:1,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:2,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+所有节点断连
+term:5,serverID:2---成为候选者
+term:5,serverID:1---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:2,对方同意了投票
+term:6,serverID:1---成为Leader
+leader is 1
+term:7,serverID:0---成为候选者
+term:7,serverID:0---收到了来自serverID:2,对方同意了投票
+term:7,serverID:0---成为Leader
+term:7,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+  ... Passed --  time  8.0s #peers 3 #RPCs   764 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:4---成为候选者
+term:1,serverID:4---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---成为候选者
+term:1,serverID:4---收到了来自serverID:3,对方同意了投票
+term:1,serverID:4---收到了来自serverID:5,对方同意了投票
+term:1,serverID:4---成为Leader
+term:1,serverID:4---收到了来自serverID:2,对方同意了投票
+term:1,serverID:4---收到了来自serverID:6,对方同意了投票
+leader is 4
+term:2,serverID:1---成为候选者
+term:2,serverID:2---成为候选者
+leader is 4
+term:2,serverID:5---成为候选者
+term:2,serverID:6---成为候选者
+term:2,serverID:6---收到了来自serverID:4,对方同意了投票
+term:2,serverID:6---收到了来自serverID:3,对方同意了投票
+term:2,serverID:0---成为候选者
+term:3,serverID:4---成为候选者
+term:3,serverID:4---收到了来自serverID:3,对方同意了投票
+term:3,serverID:4---收到了来自serverID:1,对方同意了投票
+term:3,serverID:4---收到了来自serverID:6,对方同意了投票
+term:3,serverID:4---成为Leader
+leader is 4
+term:4,serverID:3---成为候选者
+leader is 4
+leader is 4
+leader is 4
+term:4,serverID:6---成为候选者
+term:5,serverID:3---成为候选者
+term:5,serverID:3---收到了来自serverID:0,对方同意了投票
+term:5,serverID:3---收到了来自serverID:1,对方同意了投票
+term:5,serverID:3---收到了来自serverID:5,对方同意了投票
+term:5,serverID:3---成为Leader
+term:3,serverID:2---成为候选者
+leader is 3
+term:6,serverID:0---成为候选者
+leader is 4
+term:6,serverID:5---成为候选者
+term:7,serverID:4---成为候选者
+term:7,serverID:4---收到了来自serverID:6,对方同意了投票
+term:7,serverID:4---收到了来自serverID:0,对方同意了投票
+term:7,serverID:4---收到了来自serverID:2,对方同意了投票
+term:7,serverID:4---成为Leader
+term:6,serverID:1---成为候选者
+leader is 4
+term:8,serverID:2---成为候选者
+term:8,serverID:2---收到了来自serverID:6,对方同意了投票
+term:8,serverID:2---收到了来自serverID:1,对方同意了投票
+term:8,serverID:2---收到了来自serverID:5,对方同意了投票
+term:8,serverID:2---成为Leader
+leader is 2
+leader is 2
+leader is 3
+leader is 4
+  ... Passed --  time 11.5s #peers 7 #RPCs   402 #Ops    0
+PASS
+ok  	6.5840/raft1	22.552s
+
+============================== Test Run 15 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+leader is 1
+  ... Passed --  time  3.1s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:0,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:2,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:2,对方同意了投票
+term:4,serverID:1---成为Leader
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:2,对方同意了投票
+term:5,serverID:0---成为Leader
+leader is 0
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+term:6,serverID:1---成为Leader
+term:6,serverID:1---收到了来自serverID:2,对方同意了投票
+leader is 1
+  ... Passed --  time  5.5s #peers 3 #RPCs   502 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:1---收到了来自serverID:6,对方同意了投票
+term:1,serverID:1---收到了来自serverID:3,对方同意了投票
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+term:1,serverID:1---收到了来自serverID:4,对方同意了投票
+term:1,serverID:1---收到了来自serverID:0,对方同意了投票
+term:1,serverID:1---收到了来自serverID:5,对方同意了投票
+leader is 1
+term:2,serverID:5---成为候选者
+term:2,serverID:4---成为候选者
+leader is 1
+term:2,serverID:3---成为候选者
+term:2,serverID:0---成为候选者
+term:2,serverID:2---成为候选者
+term:2,serverID:6---成为候选者
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:3,对方同意了投票
+term:3,serverID:0---收到了来自serverID:4,对方同意了投票
+term:3,serverID:0---收到了来自serverID:5,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+term:4,serverID:4---成为候选者
+term:4,serverID:3---成为候选者
+term:4,serverID:3---收到了来自serverID:6,对方同意了投票
+term:4,serverID:3---收到了来自serverID:2,对方同意了投票
+term:4,serverID:3---收到了来自serverID:5,对方同意了投票
+term:4,serverID:3---成为Leader
+leader is 3
+leader is 3
+term:5,serverID:1---成为候选者
+term:5,serverID:1---收到了来自serverID:3,对方同意了投票
+term:5,serverID:1---收到了来自serverID:0,对方同意了投票
+term:5,serverID:1---收到了来自serverID:5,对方同意了投票
+term:5,serverID:1---收到了来自serverID:4,对方同意了投票
+term:5,serverID:1---成为Leader
+leader is 1
+leader is 1
+term:6,serverID:5---成为候选者
+term:6,serverID:5---收到了来自serverID:3,对方同意了投票
+term:6,serverID:5---收到了来自serverID:0,对方同意了投票
+term:6,serverID:5---收到了来自serverID:2,对方同意了投票
+term:6,serverID:5---成为Leader
+term:6,serverID:5---收到了来自serverID:1,对方同意了投票
+leader is 5
+term:7,serverID:2---成为候选者
+term:7,serverID:3---成为候选者
+term:7,serverID:0---成为候选者
+term:7,serverID:0---收到了来自serverID:6,对方同意了投票
+term:7,serverID:0---收到了来自serverID:4,对方同意了投票
+term:7,serverID:0---收到了来自serverID:1,对方同意了投票
+term:7,serverID:0---成为Leader
+leader is 0
+term:8,serverID:6---成为候选者
+leader is 5
+leader is 0
+leader is 5
+  ... Passed --  time  9.2s #peers 7 #RPCs  1728 #Ops    0
+PASS
+ok  	6.5840/raft1	17.722s
+
+============================== Test Run 16 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+leader is 2
+  ... Passed --  time  3.0s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:0,对方同意了投票
+term:2,serverID:1---成为Leader
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:1,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:2---成为候选者
+term:4,serverID:2---收到了来自serverID:0,对方同意了投票
+term:4,serverID:2---成为Leader
+term:4,serverID:2---收到了来自serverID:1,对方同意了投票
+leader is 2
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:1---成为候选者
+term:5,serverID:1---收到了来自serverID:0,对方同意了投票
+term:5,serverID:1---成为Leader
+leader is 1
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+  ... Passed --  time  6.4s #peers 3 #RPCs   595 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:6---成为候选者
+term:1,serverID:6---收到了来自serverID:3,对方同意了投票
+term:1,serverID:6---收到了来自serverID:5,对方同意了投票
+term:1,serverID:6---收到了来自serverID:2,对方同意了投票
+term:1,serverID:6---成为Leader
+term:1,serverID:6---收到了来自serverID:0,对方同意了投票
+term:1,serverID:6---收到了来自serverID:4,对方同意了投票
+term:1,serverID:6---收到了来自serverID:1,对方同意了投票
+leader is 6
+term:2,serverID:3---成为候选者
+term:2,serverID:3---收到了来自serverID:0,对方同意了投票
+term:2,serverID:3---收到了来自serverID:1,对方同意了投票
+term:2,serverID:3---收到了来自serverID:5,对方同意了投票
+term:2,serverID:3---成为Leader
+term:2,serverID:4---成为候选者
+term:2,serverID:2---成为候选者
+term:3,serverID:5---成为候选者
+term:3,serverID:5---收到了来自serverID:0,对方同意了投票
+term:3,serverID:5---收到了来自serverID:1,对方同意了投票
+term:3,serverID:5---收到了来自serverID:3,对方同意了投票
+term:3,serverID:5---成为Leader
+term:4,serverID:1---成为候选者
+term:4,serverID:1---收到了来自serverID:3,对方同意了投票
+term:4,serverID:1---收到了来自serverID:5,对方同意了投票
+term:4,serverID:1---收到了来自serverID:0,对方同意了投票
+term:4,serverID:1---成为Leader
+leader is 1
+term:5,serverID:0---成为候选者
+leader is 1
+term:6,serverID:6---成为候选者
+term:6,serverID:6---收到了来自serverID:0,对方同意了投票
+term:6,serverID:6---收到了来自serverID:1,对方同意了投票
+term:6,serverID:6---收到了来自serverID:3,对方同意了投票
+term:6,serverID:6---成为Leader
+term:6,serverID:6---收到了来自serverID:5,对方同意了投票
+leader is 6
+term:7,serverID:3---成为候选者
+term:7,serverID:3---收到了来自serverID:5,对方同意了投票
+term:7,serverID:3---收到了来自serverID:1,对方同意了投票
+term:7,serverID:3---收到了来自serverID:2,对方同意了投票
+term:7,serverID:3---成为Leader
+leader is 3
+leader is 3
+term:8,serverID:5---成为候选者
+term:8,serverID:6---成为候选者
+term:8,serverID:6---收到了来自serverID:2,对方同意了投票
+term:8,serverID:6---收到了来自serverID:1,对方同意了投票
+term:8,serverID:6---收到了来自serverID:0,对方同意了投票
+term:8,serverID:6---成为Leader
+leader is 6
+term:3,serverID:4---成为候选者
+leader is 3
+leader is 3
+leader is 6
+term:9,serverID:1---成为候选者
+term:9,serverID:0---成为候选者
+term:9,serverID:0---收到了来自serverID:6,对方同意了投票
+term:9,serverID:0---收到了来自serverID:3,对方同意了投票
+term:9,serverID:0---收到了来自serverID:4,对方同意了投票
+term:9,serverID:0---成为Leader
+term:9,serverID:2---成为候选者
+leader is 0
+leader is 0
+  ... Passed --  time  8.5s #peers 7 #RPCs   546 #Ops    0
+PASS
+ok  	6.5840/raft1	17.814s
+
+============================== Test Run 17 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+leader is 0
+  ... Passed --  time  3.1s #peers 3 #RPCs   284 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:2---成为候选者
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+让leader断连
+term:2,serverID:1---成为候选者
+term:2,serverID:1---收到了来自serverID:0,对方同意了投票
+term:2,serverID:1---成为Leader
+term:3,serverID:0---成为候选者
+term:3,serverID:0---收到了来自serverID:1,对方同意了投票
+term:3,serverID:0---成为Leader
+leader is 0
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:2---成为候选者
+term:4,serverID:2---收到了来自serverID:0,对方同意了投票
+term:4,serverID:2---成为Leader
+term:4,serverID:2---收到了来自serverID:1,对方同意了投票
+leader is 2
+所有节点断连
+term:5,serverID:1---成为候选者
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+term:6,serverID:1---成为Leader
+leader is 1
+term:7,serverID:2---成为候选者
+term:7,serverID:2---收到了来自serverID:1,对方同意了投票
+term:7,serverID:2---成为Leader
+term:7,serverID:2---收到了来自serverID:0,对方同意了投票
+leader is 2
+  ... Passed --  time  6.5s #peers 3 #RPCs   600 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:5---成为候选者
+term:1,serverID:5---收到了来自serverID:6,对方同意了投票
+term:1,serverID:0---成为候选者
+term:1,serverID:5---收到了来自serverID:1,对方同意了投票
+term:1,serverID:5---收到了来自serverID:2,对方同意了投票
+term:1,serverID:5---成为Leader
+term:1,serverID:5---收到了来自serverID:3,对方同意了投票
+term:1,serverID:5---收到了来自serverID:4,对方同意了投票
+leader is 5
+term:2,serverID:1---成为候选者
+term:2,serverID:3---成为候选者
+leader is 5
+term:2,serverID:4---成为候选者
+term:2,serverID:4---收到了来自serverID:6,对方同意了投票
+term:2,serverID:4---收到了来自serverID:2,对方同意了投票
+term:2,serverID:0---成为候选者
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:1,对方同意了投票
+term:3,serverID:2---收到了来自serverID:4,对方同意了投票
+term:3,serverID:2---收到了来自serverID:6,对方同意了投票
+term:3,serverID:2---成为Leader
+term:4,serverID:6---成为候选者
+term:4,serverID:6---收到了来自serverID:2,对方同意了投票
+term:4,serverID:6---收到了来自serverID:1,对方同意了投票
+term:4,serverID:6---收到了来自serverID:4,对方同意了投票
+term:4,serverID:6---成为Leader
+leader is 6
+leader is 6
+term:5,serverID:5---成为候选者
+term:5,serverID:5---收到了来自serverID:6,对方同意了投票
+term:5,serverID:5---收到了来自serverID:2,对方同意了投票
+term:5,serverID:5---收到了来自serverID:1,对方同意了投票
+term:5,serverID:5---收到了来自serverID:4,对方同意了投票
+term:5,serverID:5---成为Leader
+leader is 5
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:3,对方同意了投票
+term:6,serverID:2---收到了来自serverID:4,对方同意了投票
+term:6,serverID:2---收到了来自serverID:5,对方同意了投票
+term:6,serverID:2---成为Leader
+term:6,serverID:2---收到了来自serverID:6,对方同意了投票
+leader is 2
+term:7,serverID:4---成为候选者
+term:6,serverID:1---成为候选者
+term:6,serverID:1---收到了来自serverID:6,对方同意了投票
+term:6,serverID:1---收到了来自serverID:3,对方同意了投票
+term:6,serverID:1---收到了来自serverID:5,对方同意了投票
+term:6,serverID:1---成为Leader
+term:6,serverID:1---收到了来自serverID:0,对方同意了投票
+leader is 1
+term:7,serverID:0---成为候选者
+term:7,serverID:0---收到了来自serverID:5,对方同意了投票
+term:7,serverID:0---收到了来自serverID:3,对方同意了投票
+term:7,serverID:6---成为候选者
+term:8,serverID:3---成为候选者
+term:8,serverID:3---收到了来自serverID:4,对方同意了投票
+term:8,serverID:3---收到了来自serverID:0,对方同意了投票
+term:8,serverID:3---收到了来自serverID:5,对方同意了投票
+term:8,serverID:3---成为Leader
+leader is 3
+term:9,serverID:5---成为候选者
+term:9,serverID:5---收到了来自serverID:6,对方同意了投票
+term:9,serverID:5---收到了来自serverID:0,对方同意了投票
+term:9,serverID:5---收到了来自serverID:3,对方同意了投票
+term:9,serverID:5---成为Leader
+leader is 5
+leader is 1
+leader is 5
+term:10,serverID:2---成为候选者
+term:10,serverID:2---收到了来自serverID:6,对方同意了投票
+term:10,serverID:2---收到了来自serverID:3,对方同意了投票
+term:10,serverID:2---收到了来自serverID:5,对方同意了投票
+term:10,serverID:2---成为Leader
+term:10,serverID:2---收到了来自serverID:0,对方同意了投票
+term:10,serverID:2---收到了来自serverID:1,对方同意了投票
+term:10,serverID:2---收到了来自serverID:4,对方同意了投票
+leader is 2
+  ... Passed --  time  9.5s #peers 7 #RPCs  1986 #Ops    0
+PASS
+ok  	6.5840/raft1	19.119s
+
+============================== Test Run 18 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:1---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   276 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:1,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:2,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+term:4,serverID:0---成为Leader
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:1---成为候选者
+term:5,serverID:1---收到了来自serverID:2,对方同意了投票
+term:5,serverID:1---成为Leader
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:1,对方同意了投票
+term:6,serverID:2---成为Leader
+leader is 2
+term:7,serverID:0---成为候选者
+term:7,serverID:0---收到了来自serverID:1,对方同意了投票
+term:7,serverID:0---收到了来自serverID:2,对方同意了投票
+term:7,serverID:0---成为Leader
+leader is 0
+  ... Passed --  time  4.5s #peers 3 #RPCs   414 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:3---成为候选者
+term:1,serverID:0---收到了来自serverID:6,对方同意了投票
+term:1,serverID:0---收到了来自serverID:5,对方同意了投票
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:4,对方同意了投票
+term:1,serverID:3---收到了来自serverID:1,对方同意了投票
+leader is 0
+term:2,serverID:1---成为候选者
+term:2,serverID:4---成为候选者
+term:2,serverID:3---成为候选者
+leader is 0
+term:2,serverID:6---成为候选者
+term:2,serverID:2---成为候选者
+term:2,serverID:5---成为候选者
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:2,对方同意了投票
+term:3,serverID:1---收到了来自serverID:3,对方同意了投票
+term:3,serverID:1---收到了来自serverID:4,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+term:4,serverID:4---成为候选者
+term:4,serverID:4---收到了来自serverID:6,对方同意了投票
+term:4,serverID:4---收到了来自serverID:1,对方同意了投票
+term:4,serverID:4---收到了来自serverID:3,对方同意了投票
+term:4,serverID:4---成为Leader
+term:4,serverID:4---收到了来自serverID:5,对方同意了投票
+leader is 4
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:6,对方同意了投票
+term:5,serverID:0---收到了来自serverID:1,对方同意了投票
+term:5,serverID:0---收到了来自serverID:3,对方同意了投票
+term:5,serverID:0---成为Leader
+term:5,serverID:0---收到了来自serverID:5,对方同意了投票
+term:4,serverID:2---成为候选者
+leader is 0
+leader is 0
+term:6,serverID:3---成为候选者
+term:6,serverID:3---收到了来自serverID:2,对方同意了投票
+term:6,serverID:3---收到了来自serverID:5,对方同意了投票
+term:6,serverID:3---收到了来自serverID:0,对方同意了投票
+term:6,serverID:3---成为Leader
+term:6,serverID:6---成为候选者
+leader is 3
+term:7,serverID:5---成为候选者
+term:7,serverID:5---收到了来自serverID:6,对方同意了投票
+term:7,serverID:5---收到了来自serverID:0,对方同意了投票
+term:7,serverID:5---收到了来自serverID:2,对方同意了投票
+term:7,serverID:5---成为Leader
+term:7,serverID:5---收到了来自serverID:4,对方同意了投票
+leader is 5
+leader is 5
+leader is 3
+leader is 5
+leader is 3
+leader is 5
+  ... Passed --  time  8.9s #peers 7 #RPCs  1674 #Ops    0
+PASS
+ok  	6.5840/raft1	16.354s
+
+============================== Test Run 19 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+leader is 0
+leader is 0
+  ... Passed --  time  3.0s #peers 3 #RPCs   278 #Ops    0
+Test (3A): election after network failure (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+term:1,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+让leader断连
+term:2,serverID:2---成为候选者
+term:2,serverID:2---收到了来自serverID:1,对方同意了投票
+term:2,serverID:2---成为Leader
+term:3,serverID:1---成为候选者
+term:3,serverID:1---收到了来自serverID:2,对方同意了投票
+term:3,serverID:1---成为Leader
+leader is 1
+让leader重连
+检查leader，保证只能有一个leader
+term:4,serverID:0---成为候选者
+term:4,serverID:0---收到了来自serverID:2,对方同意了投票
+term:4,serverID:0---成为Leader
+term:4,serverID:0---收到了来自serverID:1,对方同意了投票
+leader is 0
+所有节点断连
+检查谁是leader
+产生majority分区
+检查谁是leader
+term:5,serverID:2---成为候选者
+term:5,serverID:2---收到了来自serverID:1,对方同意了投票
+term:5,serverID:2---成为Leader
+leader is 2
+term:6,serverID:0---成为候选者
+term:6,serverID:0---收到了来自serverID:1,对方同意了投票
+term:6,serverID:0---成为Leader
+term:6,serverID:0---收到了来自serverID:2,对方同意了投票
+leader is 0
+  ... Passed --  time  8.0s #peers 3 #RPCs   744 #Ops    0
+Test (3A): multiple elections (reliable network)...
+term:1,serverID:0---成为候选者
+term:1,serverID:5---成为候选者
+term:1,serverID:0---收到了来自serverID:4,对方同意了投票
+term:1,serverID:5---收到了来自serverID:3,对方同意了投票
+term:1,serverID:0---收到了来自serverID:6,对方同意了投票
+term:1,serverID:5---收到了来自serverID:1,对方同意了投票
+term:1,serverID:0---收到了来自serverID:2,对方同意了投票
+term:1,serverID:0---成为Leader
+leader is 0
+term:2,serverID:3---成为候选者
+term:2,serverID:5---成为候选者
+term:2,serverID:1---成为候选者
+leader is 0
+term:2,serverID:4---成为候选者
+term:2,serverID:6---成为候选者
+term:2,serverID:6---收到了来自serverID:2,对方同意了投票
+term:3,serverID:2---成为候选者
+term:3,serverID:2---收到了来自serverID:3,对方同意了投票
+term:3,serverID:2---收到了来自serverID:6,对方同意了投票
+term:3,serverID:2---收到了来自serverID:5,对方同意了投票
+term:3,serverID:2---成为Leader
+leader is 2
+leader is 2
+term:4,serverID:6---成为候选者
+term:4,serverID:6---收到了来自serverID:5,对方同意了投票
+term:4,serverID:6---收到了来自serverID:1,对方同意了投票
+term:4,serverID:6---收到了来自serverID:3,对方同意了投票
+term:4,serverID:6---成为Leader
+leader is 6
+term:5,serverID:0---成为候选者
+term:5,serverID:0---收到了来自serverID:6,对方同意了投票
+term:5,serverID:0---收到了来自serverID:5,对方同意了投票
+term:5,serverID:0---收到了来自serverID:1,对方同意了投票
+term:5,serverID:0---成为Leader
+term:5,serverID:0---收到了来自serverID:2,对方同意了投票
+leader is 0
+leader is 0
+term:5,serverID:3---成为候选者
+term:5,serverID:3---收到了来自serverID:6,对方同意了投票
+term:5,serverID:3---收到了来自serverID:1,对方同意了投票
+term:5,serverID:3---收到了来自serverID:5,对方同意了投票
+term:5,serverID:3---成为Leader
+leader is 3
+term:3,serverID:4---成为候选者
+term:6,serverID:5---成为候选者
+term:6,serverID:5---收到了来自serverID:6,对方同意了投票
+term:6,serverID:5---收到了来自serverID:0,对方同意了投票
+term:6,serverID:5---收到了来自serverID:1,对方同意了投票
+term:6,serverID:5---成为Leader
+term:7,serverID:1---成为候选者
+term:7,serverID:1---收到了来自serverID:6,对方同意了投票
+term:7,serverID:1---收到了来自serverID:0,对方同意了投票
+term:7,serverID:1---收到了来自serverID:5,对方同意了投票
+term:7,serverID:1---成为Leader
+leader is 1
+term:6,serverID:2---成为候选者
+term:6,serverID:2---收到了来自serverID:3,对方同意了投票
+term:8,serverID:6---成为候选者
+term:8,serverID:6---收到了来自serverID:2,对方同意了投票
+term:8,serverID:6---收到了来自serverID:3,对方同意了投票
+term:8,serverID:6---收到了来自serverID:5,对方同意了投票
+term:8,serverID:6---成为Leader
+leader is 6
+term:8,serverID:0---成为候选者
+term:8,serverID:0---收到了来自serverID:1,对方同意了投票
+term:8,serverID:0---收到了来自serverID:3,对方同意了投票
+term:8,serverID:0---收到了来自serverID:2,对方同意了投票
+term:8,serverID:0---成为Leader
+term:8,serverID:0---收到了来自serverID:4,对方同意了投票
+term:8,serverID:0---收到了来自serverID:5,对方同意了投票
+leader is 0
+  ... Passed --  time 10.1s #peers 7 #RPCs  1386 #Ops    0
+PASS
+ok  	6.5840/raft1	21.059s
+
+============================== Test Run 20 ==============================
+Test (3A): initial election (reliable network)...
+term:1,serverID:1---成为候选者
+term:1,serverID:0---成为候选者
+term:1,serverID:1---收到了来自serverID:2,对方同意了投票
+term:1,serverID:1---成为Leader
+leader is 1
+info: wrote visualization to /tmp/porcupine-1072364940.html
+exit status 1
+FAIL	6.5840/raft1	0.768s
+
+============================== Test Run 21 ==============================

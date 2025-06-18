@@ -72,6 +72,7 @@ func (ts *Test) checkOneLeader() int {
 			if ts.g.IsConnected(i) {
 				if term, leader := ts.srvs[i].GetState(); leader {
 					leaders[term] = append(leaders[term], i)
+					fmt.Printf("term is %d,leader is %d\n", term, i)
 				}
 			}
 		}
@@ -151,10 +152,11 @@ func (ts *Test) checkNoLeader() {
 	tester.AnnotateCheckerBegin("checking no unexpected leader among connected servers")
 	for i := 0; i < ts.n; i++ {
 		if ts.g.IsConnected(i) {
-			_, is_leader := ts.srvs[i].GetState()
+			term, is_leader := ts.srvs[i].GetState()
 			if is_leader {
-				details := fmt.Sprintf("leader = %v", i)
+				details := fmt.Sprintf("term = %v,leader = %v", term, i)
 				tester.AnnotateCheckerFailure("unexpected leader found", details)
+				//time.Sleep(1 * time.Second)
 				ts.Fatalf(details)
 			}
 		}
