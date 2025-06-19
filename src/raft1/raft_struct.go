@@ -12,6 +12,17 @@ type LogEntry struct {
 	Command interface{}
 }
 
+//	type Entry struct {
+//		Term    int
+//		Command interface{}
+//	}
+//
+//	type Log struct {
+//		LogMap    map[int]Entry
+//		Length    int
+//		lastIndex int
+//		lastTerm  int
+//	}
 type LeaderTool struct {
 	nextIndex  []int
 	matchIndex []int
@@ -49,3 +60,14 @@ type RequestVoteReply struct {
 	VoteGranted bool
 	//根据term就可以识别失败的类型，任期相同，那么只能有自己一个Leader，那么肯定是日志对不上
 }
+
+//func (log *Log) append(command interface{}, term int) int {
+//	log.LogMap[log.lastIndex+1] = Entry{
+//		Term:    term,
+//		Command: command,
+//	}
+//	log.lastIndex++
+//	log.lastTerm = term
+//	log.Length++
+//	return log.lastIndex
+//}

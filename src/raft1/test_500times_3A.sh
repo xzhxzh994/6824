@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# 定义输出文件
-OUTPUT_FILE="test_results_500.txt"
+# 获取当前日期时间
+CURRENT_TIME=$(date "+%Y%m%d_%H%M%S")
+#test_results_100_${CURRENT_TIME}.txt
+# 定义输出文件名，将当前时间加到文件名中
+OUTPUT_FILE="testResult/test_results_500_${CURRENT_TIME}.txt"
 
-# 执行测试500次
+# 执行测试100次
 for i in {1..500}
 do
   echo "============================== Test Run $i ==============================" >> $OUTPUT_FILE
