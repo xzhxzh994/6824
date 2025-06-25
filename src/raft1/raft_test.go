@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	"6.5840/tester1"
+	tester "6.5840/tester1"
 )
 
 // The tester generously allows solutions to complete elections in one second
@@ -206,24 +206,32 @@ func TestFollowerFailure3B(t *testing.T) {
 	ts.one(101, servers, false)
 
 	// disconnect one follower from the network.
+	fmt.Println("检查leader")
 	leader1 := ts.checkOneLeader()
+	fmt.Println("离线一个节点")
 	ts.g.DisconnectAll((leader1 + 1) % servers)
 	tester.AnnotateConnection(ts.g.GetConnected())
 
 	// the leader and remaining follower should be
 	// able to agree despite the disconnected follower.
+	fmt.Println("尝试达成第二条共识")
 	ts.one(102, servers-1, false)
 	time.Sleep(RaftElectionTimeout)
+	fmt.Println("尝试达成第三条共识")
 	ts.one(103, servers-1, false)
-
+	fmt.Println("离线所有Follower")
 	// disconnect the remaining follower
 	leader2 := ts.checkOneLeader()
 	ts.g.DisconnectAll((leader2 + 1) % servers)
 	ts.g.DisconnectAll((leader2 + 2) % servers)
+	fmt.Println("成功离线所有Follower")
 	tester.AnnotateConnection(ts.g.GetConnected())
 
+	fmt.Println("成功离线所有Follower")
+	fmt.Println("尝试提交第四条日志")
 	// submit a command.
 	index, _, ok := ts.srvs[leader2].Raft().Start(104)
+
 	if ok != true {
 		t.Fatalf("leader rejected Start()")
 	}
@@ -232,7 +240,7 @@ func TestFollowerFailure3B(t *testing.T) {
 	}
 
 	time.Sleep(2 * RaftElectionTimeout)
-
+	fmt.Println("2s之后，尝试检查日志提交情况。希望没有提交")
 	// check that command 104 did not commit.
 	ts.checkNoAgreement(index)
 }
@@ -494,16 +502,18 @@ func TestRejoin3B(t *testing.T) {
 
 	tester.AnnotateTest("TestRejoin3B", servers)
 	ts.Begin("Test (3B): rejoin of partitioned leader")
-
+	fmt.Println("尝试达成第一条共识")
 	ts.one(101, servers, true)
 
 	// leader network failure
+	fmt.Println("离线Leader1")
 	leader1 := ts.checkOneLeader()
 	ts.g.DisconnectAll(leader1)
 	tester.AnnotateConnection(ts.g.GetConnected())
 
 	// make old leader try to agree on some entries
 	start := tester.GetAnnotateTimestamp()
+	fmt.Println("在离线的Leader上提交三条日志")
 	ts.srvs[leader1].Raft().Start(102)
 	ts.srvs[leader1].Raft().Start(103)
 	ts.srvs[leader1].Raft().Start(104)
@@ -511,22 +521,28 @@ func TestRejoin3B(t *testing.T) {
 	tester.AnnotateInfoInterval(start, text, text)
 
 	// new leader commits, also for index=2
+	fmt.Println("在真正的Leader上提交第二条日志")
 	ts.one(103, 2, true)
 
 	// new leader network failure
 	leader2 := ts.checkOneLeader()
+	fmt.Println("离线Leader2")
 	ts.g.DisconnectAll(leader2)
 
 	// old leader connected again
+	fmt.Println("重新连接Leader1")
 	ts.g.ConnectOne(leader1)
 	tester.AnnotateConnection(ts.g.GetConnected())
 
+	fmt.Println("提交第三条日志")
 	ts.one(104, 2, true)
 
 	// all together now
+	fmt.Println("重新连接Leader2")
 	ts.g.ConnectOne(leader2)
 	tester.AnnotateConnection(ts.g.GetConnected())
 
+	fmt.Println("提交第五条日志")
 	ts.one(105, servers, true)
 }
 

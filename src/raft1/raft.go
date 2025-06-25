@@ -7,6 +7,7 @@ package raft
 // Make() creates a new raft peer that implements the raft interface.
 
 import (
+	"fmt"
 	//	"bytes"
 	"math/rand"
 	"sync"
@@ -16,7 +17,7 @@ import (
 	//	"6.5840/labgob"
 	"6.5840/labrpc"
 	"6.5840/raftapi"
-	"6.5840/tester1"
+	tester "6.5840/tester1"
 )
 
 // A Go object implementing a single Raft peer.
@@ -140,17 +141,22 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	if args.Term < rf.currentTerm {
 		reply.Term = rf.currentTerm
 		reply.VoteGranted = false
-		//.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:term太低\n", rf.currentTerm, rf.me, args.CandidateID)
+		fmt.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:term太低\n", rf.currentTerm, rf.me, args.CandidateID)
 		return
 	}
 	if args.Term > rf.currentTerm {
 		rf.setNewTermBybiggerTerm(args.Term)
 	}
-	//还有一点：我们需要重置心跳时间
 
-	//需要满足1.当前没有投票给其他人或者当前投票的人就是对方，2.日志条目对的上
-	qualified := true //检查日志对不对的上，3A先不做
+	//需要满足1.当前没有投票给其他人或者当前投票的人就是对方，2.日志条目跟自己的一样新
+
+	qualified := rf.log[len(rf.log)-1].Term < args.LastLogTerm || (rf.log[len(rf.log)-1].Term == args.LastLogTerm && rf.log[len(rf.log)-1].Index <= args.LastLogIndex) //检查日志对不对的上，3A先不做
+	if qualified == true {
+		fmt.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote,日志条目跟自己的一样新,对方的lastLogIndex = %d,lastLogTerm = %d,自己的lastLogIndex = %d,lastLogTerm = %d\n", rf.currentTerm, rf.me, args.CandidateID, args.LastLogIndex, args.LastLogTerm, rf.log[len(rf.log)-1].Index, rf.log[len(rf.log)-1].Term)
+	}
+
 	//
+	//qualified := true
 	if (rf.voteFor == -1 || rf.voteFor == args.CandidateID) && qualified {
 		reply.VoteGranted = true
 		reply.Term = rf.currentTerm
@@ -161,7 +167,13 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	} else {
 		reply.VoteGranted = false
 		reply.Term = rf.currentTerm
-		//fmt.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:已经投票给别人\n", rf.currentTerm, rf.me, args.CandidateID)
+		if qualified == false {
+			fmt.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:日志条目落后于自己\n", rf.currentTerm, rf.me, args.CandidateID)
+		} else {
+			fmt.Printf("term:%d,serverID:%d---接收到来自server:%d的RequestVote，拒绝:已经投票给别人\n", rf.currentTerm, rf.me, args.CandidateID)
+
+		}
+
 	}
 	return
 }
@@ -227,11 +239,23 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 				break
 			}
 		}
-	}
+		//更新commitIndex,只有在更新过日志之后才能更新commitIndex
 
-	//更新commitIndex
+	}
+	
+	// if rf.commitIndex < args.LeaderCommit && rf.commitIndex < args.PrevLogIndex {
+		
+	// 	rf.commitIndex = min(args.LeaderCommit, args.PrevLogIndex) //prevLogIndex表示了和Leader一致的最新一条索引
+	// 	fmt.Printf("Term:%d,serverID:%d---接收到来自server:%d的AppendEntries,更新commitIndex为%d\n", rf.currentTerm, rf.me, args.LeaderID, args.PrevLogIndex)
+	// 	rf.apply()
+	// }
 	if rf.commitIndex < args.LeaderCommit {
-		rf.commitIndex = min(args.LeaderCommit, rf.log[len(rf.log)-1].Index)
+		commitINdex := rf.commitIndex
+		rf.commitIndex = min(args.LeaderCommit, rf.log[len(rf.log)-1].Index) //prevLogIndex表示了和Leader一致的最新一条索引\
+		if commitIndex != rf.commitIndex {
+			fmt.Printf("Term:%d,serverID:%d---接收到来自server:%d的AppendEntries,尝试更新commitIndex为%d\n", rf.currentTerm, rf.me, args.LeaderID, args.LeaderCommit)
+			
+		}
 		rf.apply()
 	}
 
@@ -327,12 +351,16 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 // 第三个返回值是如果此服务器认为自己是Leader，则返回true。
 func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	rf.mu.Lock()
+	fmt.Printf("Term = %d,node = %d,Start中的AppendEntries获得锁\n", rf.currentTerm, rf.me)
+
+	defer fmt.Printf("Term = %d,node = %d,Start中的AppendEntries释放锁\n", rf.currentTerm, rf.me)
 	defer rf.mu.Unlock()
 	index := -1
 	term := -1
 	isLeader := false
 
 	if rf.killed() || rf.state != Leader {
+		fmt.Printf("Term = %d,Not Leader = %d,尝试start条目，失败\n", rf.currentTerm, rf.me)
 		return index, term, isLeader
 	}
 	//当前节点就是Leader并且是活跃的
@@ -340,18 +368,19 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader = true
 	term = rf.currentTerm
 	index = len(rf.log) //对于尝试数组，应该添加的是Index = 1,log拥有一条默认条目，所以len = 1
+	fmt.Printf("Term = %d,Leader = %d,尝试start条目:%d,term = %d\n", rf.currentTerm, rf.me, index, term)
 	rf.log = append(rf.log, LogEntry{
 		Term:    term,
 		Command: command,
 		Index:   index,
 	})
-	go rf.tryToCommit(command, index, term) //
+	go rf.tryToCommit(term, index) //
 
 	return index, term, isLeader
 }
 
 // tryCommit只能被Start调用，Start调用时，此条目一定是当前的term
-func (rf *Raft) tryToCommit(command interface{}, term int, index int) {
+func (rf *Raft) tryToCommit(term int, index int) {
 	//将这条Command放到自己的目录中，然后通过 AppendEntries 复制到别的日志中。(一直重复，直到成功或者失败为止)
 	//之后更新commitIndex/nextIndex/matchIndex
 
@@ -359,17 +388,21 @@ func (rf *Raft) tryToCommit(command interface{}, term int, index int) {
 
 	//我们需要一个Counter来记录AppendEntries成功的数量
 	Counter := 1 //先算上自己
-	rf.mu.Lock()
+	//rf.mu.Lock()//这里会导致死锁
 	currenterm := rf.currentTerm
-	rf.mu.Unlock()
+	//rf.mu.Unlock()
 	mu := sync.Mutex{}
 	cond := sync.NewCond(&mu)
+	//wg := sync.WaitGroup{}
+	currentTerm := rf.currentTerm
 
 	//对每个节点：发送AppendEntries，附上从nextIndex到最新日志的log。如果回复false则应该重发。
 	//但是这里考虑一个情况:由于网络分区,Leader已经不再是真的Leader，那么重发就永远不会得到认可。所以我们要检查false的原因，如果是一致性检查未通过或者ok = false，则可以重发，如果是Term小于reply，则停止
 	for serverID, _ := range rf.peers {
 		if serverID != rf.me {
-			go func(serverID int) {
+			//wg.Add(1)
+			go func(serverID int, currentTerm int) {
+				//defer wg.Done()
 				//只有  当前term  的条目保存到了majority，成为了可提交状态。在这个之前的条目才会被赋予committed属性 作为可提交状态。
 				for {
 					args := AppendEntriesArgs{
@@ -383,12 +416,15 @@ func (rf *Raft) tryToCommit(command interface{}, term int, index int) {
 					reply := AppendEntriesReply{}
 					ok := rf.sendAppendEntries(serverID, &args, &reply)
 					//如果发送成功并且添加成功
-					rf.mu.Lock()
-					defer rf.mu.Unlock()
+					//rf.mu.Lock()
+					//fmt.Printf("Term = %d,Leader = %d,trycommit中的AppendEntries获得锁\n", rf.currentTerm, rf.me)
+					//defer fmt.Printf("Term = %d,Leader = %d,trycommit中的AppendEntries释放锁\n", rf.currentTerm, rf.me)
+					//defer rf.mu.Unlock()
 					if reply.Success == true {
 						mu.Lock()
+						fmt.Printf("Term = %d,Leader = %d,收到来自节点= %d的 添加成功响应\n", rf.currentTerm, rf.me, serverID)
 						Counter++
-						mu.Unlock()
+						defer mu.Unlock()
 						rf.leaderTool.nextIndex[serverID] = max(rf.leaderTool.nextIndex[serverID], index+1)
 						rf.leaderTool.matchIndex[serverID] = max(rf.leaderTool.matchIndex[serverID], index)
 						cond.Broadcast()
@@ -409,7 +445,7 @@ func (rf *Raft) tryToCommit(command interface{}, term int, index int) {
 					rf.leaderTool.nextIndex[serverID] = max(rf.leaderTool.nextIndex[serverID]-1, 1)
 				}
 
-			}(serverID)
+			}(serverID, currentTerm)
 		}
 	}
 	mu.Lock()
@@ -419,11 +455,23 @@ func (rf *Raft) tryToCommit(command interface{}, term int, index int) {
 	}
 	mu.Unlock()
 	rf.mu.Lock()
+	fmt.Printf("Term = %d,Leader = %d,trycommit中获得锁\n", rf.currentTerm, rf.me)
+	defer fmt.Printf("Term = %d,Leader = %d,trycommit中释放锁\n", rf.currentTerm, rf.me)
 	defer rf.mu.Unlock()
+	fmt.Printf("Term = %d,Leader = %d,退出等待状态，条目复制到majority或者不是Leader\n", rf.currentTerm, rf.me)
 	if Counter > len(rf.peers)/2 && term == rf.currentTerm { //超过半数的人完成了append,并且这个条目是当前任期的
+		fmt.Printf("Leader = %d,成功commit条目%d \n", rf.me, index)
 		rf.commitIndex = max(rf.commitIndex, index)
 		rf.apply()
-	} //自己不是leader了应该就不用管了
+	} else if Counter <= len(rf.peers)/2 {
+		fmt.Printf("Term = %d,Leader = %d,无法执行commitIndex的更新,原因:票数不足\n", rf.currentTerm, rf.me)
+	} else {
+		fmt.Printf("Term = %d,Leader = %d,无法执行commitIndex的更新,原因:当前任期不对,term = %d,rf.currentTerm = %d\n", rf.currentTerm, rf.me, term, rf.currentTerm)
+	}
+	//自己不是leader了应该就不用管了
+	//wg.Wait()
+	fmt.Printf("term = %d,Leader = %d,commit执行完成\n", rf.currentTerm, rf.me)
+
 }
 
 //func (rf *Raft) tryToAppend(serverID int) {
@@ -479,13 +527,13 @@ func GetElectionTimeout() int64 {
 }
 
 func (rf *Raft) sendHeartBeat() {
-	rf.mu.Lock()
+	//rf.mu.Lock()
 	//rf.lastHeartBeat = time.Now()//student guide说不需要
 	//LeaderID := rf.me
 	//考虑一种情况：如果当前Leader是旧leader,它向其他人发送heartbeat的时候，使用的参数必须是当前的term
 	term := rf.currentTerm //需要把当前状态的term给拿到
 
-	rf.mu.Unlock()
+	//rf.mu.Unlock()
 	for serverID, _ := range rf.peers {
 		if serverID != rf.me {
 			go func(serverID int) {
@@ -509,6 +557,7 @@ func (rf *Raft) sendHeartBeat() {
 				defer rf.mu.Unlock()
 				if ok && reply.Success == false {
 					if reply.Term > rf.currentTerm {
+						fmt.Printf("Term = %d,Leader = %d,收到来自node = %d的Term = %d,更新自己的Term\n", rf.currentTerm, rf.me, serverID, reply.Term)
 						rf.setNewTermBybiggerTerm(reply.Term)
 					} else {
 						rf.leaderTool.nextIndex[serverID] = max(rf.leaderTool.nextIndex[serverID]-1, 1) //这里不用考虑执行顺序问题，只要属于majority，就不会出现不一致,但是要注意nextIndex最小为1
@@ -523,6 +572,7 @@ func (rf *Raft) sendHeartBeat() {
 }
 
 func (rf *Raft) ticker() { //心跳机制
+	count := 0
 	for rf.killed() == false {
 		//fmt.Printf("serverID:%d---进入ticker\n", rf.me)
 		// Your code here (3A)
@@ -530,20 +580,31 @@ func (rf *Raft) ticker() { //心跳机制
 
 		// pause for a random amount of time between 50 and 350
 		// milliseconds.
+
 		time.Sleep(rf.heartBeat)
 		//如果整体上锁，整个操作会具有原子性，但是我们不能在RPC的时候上锁等待回应
-		rf.mu.Lock()
+		//rf.mu.Lock()
 		state := rf.state
-		rf.mu.Unlock()
+		//rf.mu.Unlock()
+		count++
+
 		if state == Leader {
+			if count >= 10 {
+				count = 0
+				fmt.Printf("Term= %d,Leader = %d,完成10次心跳\n", rf.currentTerm, rf.me)
+			}
 			go rf.sendHeartBeat() //应该用线程，否则会阻塞//heartbeat有等幂性，无所谓同时收到多条
 			//
 		} else {
+			if count >= 10 {
+				count = 0
+				fmt.Printf("Term= %d,node = %d,完成10次心跳\n", rf.currentTerm, rf.me)
+			}
 			electionTimeout := GetElectionTimeout()
 			//fmt.Printf("serverID:%d---状态为%s\n", rf.me, rf.state)
-			rf.mu.Lock()
+			//rf.mu.Lock()
 			needElection := time.Since(rf.lastHeartBeat).Milliseconds() > electionTimeout
-			rf.mu.Unlock()
+			//rf.mu.Unlock()
 			//timeout
 			if needElection {
 				go rf.becomeCandidate() //student guide上面说：即使现在正在选举，我也应该开始新的选举。选举不应该被RPC的延迟而阻塞。
@@ -640,7 +701,7 @@ func (rf *Raft) becomeCandidate() {
 		LastLogIndex: rf.log[len(rf.log)-1].Index,
 		LastLogTerm:  rf.log[len(rf.log)-1].Term,
 	}
-	//fmt.Printf("term:%d,serverID:%d---成为候选者\n", args.Term, rf.me)
+	fmt.Printf("term:%d,serverID:%d---成为候选者\n", args.Term, rf.me)
 	rf.mu.Unlock()
 	//向每个节点请求投票
 	mu := sync.Mutex{}
@@ -662,8 +723,13 @@ func (rf *Raft) becomeCandidate() {
 				receivedCount++
 				if ok && reply.VoteGranted {
 					grantedCount++
-					//fmt.Printf("term:%d,serverID:%d---收到了来自serverID:%d,对方同意了投票\n", args.Term, rf.me, serverID)
+					fmt.Printf("term:%d,serverID:%d---收到了来自serverID:%d,对方同意了投票\n", args.Term, rf.me, serverID)
+				} else if reply.VoteGranted == false {
+					fmt.Printf("term:%d,serverID:%d---收到了来自serverID:%d,对方拒绝了投票\n", args.Term, rf.me, serverID)
+				} else {
+					fmt.Printf("term:%d,serverID:%d---收到了来自serverID:%d,对方未接受到投票\n", args.Term, rf.me, serverID)
 				}
+
 				mu.Unlock()
 				wg.Done()
 				cond.Broadcast()
@@ -677,7 +743,7 @@ func (rf *Raft) becomeCandidate() {
 	}
 	//fmt.Printf("term:%d,serverID:%d---获得的总票数为:%d\n", rf.currentTerm, rf.me, grantedCount)
 	if grantedCount > serverNum/2 {
-		//fmt.Printf("term:%d,serverID:%d---成为Leader\n", rf.currentTerm, rf.me)
+		fmt.Printf("term:%d,serverID:%d---成为Leader\n", rf.currentTerm, rf.me)
 		go rf.becomeLeader()
 	}
 	mu.Unlock()

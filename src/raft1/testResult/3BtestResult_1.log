@@ -1,0 +1,283 @@
+Test (3B): basic agreement (reliable network)...
+Term = 0,node = 1,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 1,尝试start条目，失败
+Term = 0,node = 1,Start中的AppendEntries释放锁
+Term = 0,node = 2,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 2,尝试start条目，失败
+Term = 0,node = 2,Start中的AppendEntries释放锁
+Term = 0,node = 0,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 0,尝试start条目，失败
+Term = 0,node = 0,Start中的AppendEntries释放锁
+Term = 0,node = 1,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 1,尝试start条目，失败
+Term = 0,node = 1,Start中的AppendEntries释放锁
+Term = 0,node = 2,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 2,尝试start条目，失败
+Term = 0,node = 2,Start中的AppendEntries释放锁
+Term = 0,node = 0,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 0,尝试start条目，失败
+Term = 0,node = 0,Start中的AppendEntries释放锁
+Term = 0,node = 1,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 1,尝试start条目，失败
+Term = 0,node = 1,Start中的AppendEntries释放锁
+Term = 0,node = 2,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 2,尝试start条目，失败
+Term = 0,node = 2,Start中的AppendEntries释放锁
+Term = 0,node = 0,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 0,尝试start条目，失败
+Term = 0,node = 0,Start中的AppendEntries释放锁
+Term = 0,node = 1,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 1,尝试start条目，失败
+Term = 0,node = 1,Start中的AppendEntries释放锁
+Term = 0,node = 2,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 2,尝试start条目，失败
+Term = 0,node = 2,Start中的AppendEntries释放锁
+Term = 0,node = 0,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 0,尝试start条目，失败
+Term = 0,node = 0,Start中的AppendEntries释放锁
+Term = 0,node = 1,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 1,尝试start条目，失败
+Term = 0,node = 1,Start中的AppendEntries释放锁
+Term = 0,node = 2,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 2,尝试start条目，失败
+Term = 0,node = 2,Start中的AppendEntries释放锁
+Term = 0,node = 0,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 0,尝试start条目，失败
+Term = 0,node = 0,Start中的AppendEntries释放锁
+term:1,serverID:2---成为候选者
+Term = 0,node = 1,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 1,尝试start条目，失败
+Term = 0,node = 1,Start中的AppendEntries释放锁
+Term = 1,node = 2,Start中的AppendEntries获得锁
+Term = 1,Not Leader = 2,尝试start条目，失败
+Term = 1,node = 2,Start中的AppendEntries释放锁
+Term = 0,node = 0,Start中的AppendEntries获得锁
+Term = 0,Not Leader = 0,尝试start条目，失败
+Term = 0,node = 0,Start中的AppendEntries释放锁
+term:1,serverID:1---接收到来自server:2的RequestVote,日志条目跟自己的一样新,对方的lastLogIndex = 0,lastLogTerm = 0,自己的lastLogIndex = 0,lastLogTerm = 0
+term:1,serverID:2---收到了来自serverID:1,对方同意了投票
+term:1,serverID:2---成为Leader
+term:1,serverID:0---接收到来自server:2的RequestVote,日志条目跟自己的一样新,对方的lastLogIndex = 0,lastLogTerm = 0,自己的lastLogIndex = 0,lastLogTerm = 0
+term:1,serverID:2---收到了来自serverID:0,对方同意了投票
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+Term= 1,Leader = 2,完成10次心跳
+Term= 1,node = 0,完成10次心跳
+Term= 1,node = 1,完成10次心跳
+info: wrote visualization to /tmp/porcupine-4143637552.html
+exit status 1
+FAIL	6.5840/raft1	37.133s
